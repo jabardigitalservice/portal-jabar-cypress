@@ -1,0 +1,30 @@
+{
+  "name": "pj-cms-portal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open": "npx cypress open"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^12.5.1",
+    "cypress-qase-reporter": "^1.4.2-alpha.2",
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-xpath": "^2.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fauziMK/portaljabar-cms-cypress.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fauziMK/portaljabar-cms-cypress/issues"
+  },
+  "homepage": "https://github.com/fauziMK/portaljabar-cms-cypress#readme",
+  "description": ""
+}
