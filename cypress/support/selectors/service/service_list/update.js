@@ -160,4 +160,7 @@ module.exports = {
     btnSimpanLanjutkan: "Simpan & Lanjutkan",
 
     //  ===== Wizard 1 ===== //
+
+    // ====== Wizard 3 ===== 
+    btnSimpanPerubahan: "Simpan Perubahan"
 }

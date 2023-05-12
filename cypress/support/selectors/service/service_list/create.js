@@ -58,9 +58,9 @@ module.exports = {
 
     // Fasilitas Layanan
     fasilitasLayanan: "//input[@placeholder='Masukkan fasilitas layanan']",
-    fasilitasLayanan2: "//input[@placeholder='Masukkan fasilitas layanan'][2]",
-    fasilitasLayanan3: "//input[@placeholder='Masukkan fasilitas layanan'][3]",
-    fasilitasLayanan4: "//input[@placeholder='Masukkan fasilitas layanan'][4]",
+    fasilitasLayanan2: "(//input[@placeholder='Masukkan fasilitas layanan'])[2]",
+    fasilitasLayanan3: "(//input[@placeholder='Masukkan fasilitas layanan'])[3]",
+    fasilitasLayanan4: "(//input[@placeholder='Masukkan fasilitas layanan'])[4]",
     btnTambahFasilitasManfaat: "Tambahkan Fasilitas",
 
     // Alamat Website

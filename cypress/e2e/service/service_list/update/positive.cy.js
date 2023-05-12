@@ -23,11 +23,14 @@ before('Load Data', () => {
 })
 
 beforeEach(() => {
+    // Login Phase
     loginPage.navigateLoginPage()
     loginPage.enterEmail(user.email)
     loginPage.enterPassword(user.password)
     loginPage.clickBtnMasuk()
     loginPage.loadCmsPage()
+
+    // Go to update page
     listServicePage.navigateToServicePage()
     listServicePage.assertServicePage()
     listServicePage.clickBtnAksi()
@@ -36,8 +39,8 @@ beforeEach(() => {
 
 describe('Update Scenario', () => {
     qase([2884, 2589, 2592, 2596],
-        it('Update All Data Multiple', () => {
-            // Go to update page
+        it('Update All Data Multiple - service technical = offline', () => {
+            // Update data form 1
             updatePage.assertUpdateServicePage()
             updatePage.chooseUrusanPemerintahan()
             updatePage.chooseSubUrusanPemerintahan()
@@ -53,6 +56,7 @@ describe('Update Scenario', () => {
             updatePage.manfaatLayananMultiple()
             updatePage.alamatWebsiteInformasiResmi(faker.image.imageUrl())
             updatePage.tautanLayananMultiple()
+            updatePage.fasilitasLayananUpdate()
             updatePage.syaratKetentuanMultiple()
             updatePage.prosedurLayanan()
             updatePage.tarifLayanan()
@@ -61,7 +65,19 @@ describe('Update Scenario', () => {
             updatePage.contactHotlinePhone('082270008376')
             updatePage.contactHotlineEmail(faker.internet.email())
             updatePage.lokasiPelayananMultiple()
-            // updatePage.clickBtnSimpanLanjutkan()
+            updatePage.clickBtnSimpanLanjutkan()
+
+            // Form 2
+            updatePage.clickBtnSimpanLanjutkan2()
+
+            // Form 3
+            updatePage.namaPenanggungJawab(faker.random.word(2))
+            updatePage.nomorHp('082276662536')
+            updatePage.alamatEmail(faker.internet.email())
+            updatePage.socialMediaMultiple()
+            updatePage.clickBtnSimpanPerubahan()
+            updatePage.clickBtnSaveCreateService()
+            updatePage.clickBtnUnderstand()
         })
     )
 })

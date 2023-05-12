@@ -562,7 +562,7 @@ export class CreateServiceMasterPage {
                 cy.xpath("(//h2[@class='font-roboto font-medium text-blue-gray-800 text-[16px] leading-[28px] pb-7'])[1]").should('contain', 'Aplikasi')
             } else {
                 cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/span[1]/form[1]/section[2]/span[1]/fieldset[1]/section[1]/img[1]")
-                    .should('have.attr', 'src', '/assets/ilustrasi-layanan-master-data-offline.ab4530ff.svg"')
+                    .should('have.attr', 'src', '/assets/ilustrasi-layanan-master-data-offline.ab4530ff.svg')
             }
         })
     }

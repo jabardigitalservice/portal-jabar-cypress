@@ -1,6 +1,7 @@
 import navbar from "../../../selectors/navbar"
 import create_service from "../../../selectors/service/service_list/create";
 import update_service from "../../../selectors/service/service_list/update";
+import { DeleteServicePage } from "./delete.cy";
 import { CreateServiceMasterPage } from "./create.cy"
 
 const { faker } = require('@faker-js/faker')
@@ -10,6 +11,7 @@ const data = faker.random.word(2)
 const data2 = faker.random.word(3)
 const data3 = faker.random.word(2)
 let create_page = new CreateServiceMasterPage()
+const deleteServicePage = new DeleteServicePage()
 
 export class UpdateServiceMasterPage {
     assertUpdateServicePage() {
@@ -177,6 +179,30 @@ export class UpdateServiceMasterPage {
             object.manfaatLayanan3 = data3
             cy.writeFile(dataWizard1, object)
             manfaatLayanan3.type(data3)
+        })
+    }
+
+    fasilitasLayananUpdate() {
+        cy.readFile(dataWizard1).then((object) => {
+            // Data 1
+            const fasilitasLayanan = cy.xpath(create_service.fasilitasLayanan)
+            object.fasilitasLayanan1 = data
+            cy.writeFile(dataWizard1, object)
+            fasilitasLayanan.clear().type(data)
+            this.clickBtnTambahFasilitas()
+
+            // Data 2
+            const fasilitasLayanan2 = cy.xpath(create_service.fasilitasLayanan2)
+            object.fasilitasLayanan2 = data2
+            cy.writeFile(dataWizard1, object)
+            fasilitasLayanan2.clear().type(data2)
+            this.clickBtnTambahFasilitas()
+
+            // Data 3
+            const fasilitasLayanan3 = cy.xpath(create_service.fasilitasLayanan3)
+            object.fasilitasLayanan3 = data3
+            cy.writeFile(dataWizard1, object)
+            fasilitasLayanan3.clear().type(data3)
         })
     }
 
@@ -431,8 +457,97 @@ export class UpdateServiceMasterPage {
                 cy.xpath("(//h2[@class='font-roboto font-medium text-blue-gray-800 text-[16px] leading-[28px] pb-7'])[1]").should('contain', 'Aplikasi')
             } else {
                 cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/span[1]/form[1]/section[2]/span[1]/fieldset[1]/section[1]/img[1]")
-                    .should('have.attr', 'src', '/assets/ilustrasi-layanan-master-data-offline.ab4530ff.svg"')
+                    .should('have.attr', 'src', '/assets/ilustrasi-layanan-master-data-offline.ab4530ff.svg')
             }
         })
     }
-}
+
+    clickBtnSimpanLanjutkan2() {
+        create_page.clickBtnSimpanLanjutkan2()
+    }
+
+    // Wizard 3
+    namaPenanggungJawab(text) {
+        create_page.namaPenanggungJawab(text)
+    }
+
+    nomorHp(text) {
+        create_page.nomorHp(text)
+    }
+
+    alamatEmail(text) {
+        create_page.alamatEmail(text)
+    }
+
+    socialMediaMultiple() {
+        // Data 1
+        const socmedName1 = cy.get(create_service.namaSosmed1)
+        socmedName1.clear()
+        socmedName1.type('TesUpdate')
+
+        // dropdown
+        const chooseSocmed1 = cy.xpath(create_service.dropdownSosmed1)
+        chooseSocmed1.click()
+        cy.wait(2000)
+
+        // facebook
+        const socmed1 = cy.contains(create_service.facebook)
+        socmed1.click({ force: true })
+
+        // url
+        const url1 = cy.xpath(create_service.urlSosmed1)
+        url1.clear()
+        url1.type("https://www.persib.co.id/")
+
+        // Data 2
+        const socmedName2 = cy.get(create_service.namaSosmed2)
+        socmedName2.clear()
+        socmedName2.type('Tes2Update')
+
+        // dropdown
+        const chooseSocmed2 = cy.xpath(create_service.dropdownSosmed2)
+        chooseSocmed2.click()
+        cy.wait(2000)
+
+        // instagram
+        const socmed2 = cy.xpath('/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/span[1]/form[1]/section[2]/span[1]/fieldset[1]/section[2]/div[2]/div[1]/section[1]/div[2]/div[2]/div[1]/div[1]/div[1]/ul[1]/li[2]/a[1]')
+        socmed2.click({ force: true })
+
+        // url  
+        const url2 = cy.xpath(create_service.urlSosmed2)
+        url2.clear()
+        url2.type("https://www.google.com/")
+
+        // Data 3
+        const socmedName3 = cy.get(create_service.namaSosmed3)
+        socmedName3.clear()
+        socmedName3.type('Tes3Update')
+
+        // dropdown
+        const chooseSocmed3 = cy.xpath(create_service.dropdownSosmed3)
+        chooseSocmed3.click()
+        cy.wait(2000)
+
+        // twitter
+        const socmed3 = cy.xpath('/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/span[1]/form[1]/section[2]/span[1]/fieldset[1]/section[2]/div[2]/div[1]/section[1]/div[3]/div[2]/div[1]/div[1]/div[1]/ul[1]/li[3]/a[1]')
+        socmed3.click({ force: true })
+
+        // url  
+        const url3 = cy.xpath(create_service.urlSosmed3)
+        url3.clear()
+        url3.type("https://jabarprov.go.id/")
+    }
+
+    clickBtnSimpanPerubahan() {
+        const btn = cy.contains(update_service.btnSimpanPerubahan)
+        btn.click()
+    }
+
+    clickBtnSaveCreateService() {
+        create_page.clickBtnSaveCreateService()
+    }
+
+    clickBtnUnderstand() {
+        deleteServicePage.clickBtnUnderstand()
+    }
+}   
