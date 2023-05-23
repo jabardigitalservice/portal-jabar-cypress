@@ -3,12 +3,15 @@ import { UpdateServiceMasterPage } from "../../../../support/pages/service/servi
 import { ListAgendaPage } from "../../../../support/pages/agenda/list.cy";
 import { CreateServiceMasterPage } from "../../../../support/pages/service/service_list/create.cy";
 import { LoginPage } from "../../../../support/pages/auth/login_page.cy";
+import { DetailServicePage } from "../../../../support/pages/service/service_list/detail.cy";
 import { DeleteServicePage } from "../../../../support/pages/service/service_list/delete.cy";
 import { qase } from "cypress-qase-reporter/dist/mocha";
 
 const { faker } = require('@faker-js/faker')
 let listServicePage = new ListServicePage()
 let updatePage = new UpdateServiceMasterPage()
+let detailPage = new DetailServicePage()
+let deleteServicePage = new DeleteServicePage()
 let createPage = new CreateServiceMasterPage()
 let agendaPage = new ListAgendaPage()
 let loginPage = new LoginPage()
@@ -23,23 +26,23 @@ before('Load Data', () => {
 })
 
 beforeEach(() => {
-    // Login Phase
-    loginPage.navigateLoginPage()
-    loginPage.enterEmail(user.email)
-    loginPage.enterPassword(user.password)
-    loginPage.clickBtnMasuk()
-    loginPage.loadCmsPage()
-
-    // Go to update page
-    listServicePage.navigateToServicePage()
-    listServicePage.assertServicePage()
-    listServicePage.clickBtnAksi()
-    listServicePage.clickBtnUbah()
+    cy.login()
 })
 
 describe('Update Scenario', () => {
-    qase([2884, 2589, 2592, 2596],
+    qase([2884, 2589, 2592, 2596, 2888, 2890, 2893, 2894, 2895, 2896, 2897, 2898],
         it('Update All Data Multiple - service technical = offline', () => {
+            // Create Data 
+            listServicePage.navigateToServicePage()
+            listServicePage.assertServicePage()
+            cy.createDataMasterService()
+
+            // Go to update page
+            listServicePage.navigateToServicePage()
+            listServicePage.assertServicePage()
+            listServicePage.clickBtnAksi()
+            listServicePage.clickBtnUbah()
+
             // Update data form 1
             updatePage.assertUpdateServicePage()
             updatePage.chooseUrusanPemerintahan()
@@ -78,6 +81,39 @@ describe('Update Scenario', () => {
             updatePage.clickBtnSimpanPerubahan()
             updatePage.clickBtnSaveCreateService()
             updatePage.clickBtnUnderstand()
+            cy.wait(3000)
+        })
+    )
+
+    qase([2861, 2862, 2863, 2869, 2873],
+        it('Assertion Data in Detail Page, Service Technical == Offline', () => {
+            listServicePage.navigateToServicePage()
+            listServicePage.assertServicePage()
+
+            // Go to detail page
+            listServicePage.clickBtnAksi()
+            listServicePage.clickBtnDetail()
+            detailPage.assertDetailPage()
+
+            // Assert Service Tab
+            detailPage.assertServiceData()
+            // Assert Application Tab
+            detailPage.clickApplicationTab()
+            detailPage.assertionApplicationData()
+            // // Assert Additional Information Tab
+            detailPage.clickAdditionalInformationTab()
+        })
+    )
+
+    qase([2882],
+        it('Delete Data', () => {
+            listServicePage.navigateToServicePage()
+            listServicePage.assertServicePage()
+            listServicePage.clickBtnAksi()
+            listServicePage.clickBtnDelete()
+            deleteServicePage.modalsConfirmationDelete()
+            deleteServicePage.clickBtnYesDelete()
+            deleteServicePage.clickBtnUnderstand()
         })
     )
 })

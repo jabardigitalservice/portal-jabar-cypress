@@ -96,6 +96,10 @@ module.exports = {
 
     // Tarif Layanan
     tarifLayanan: "(//input[@placeholder='cth: 7000'])[1]",
+    tarifLayananMax: "(//input[@placeholder='cth: 7000'])[2]",
+    checkSpecialDesc: "(//i[@role='checkbox'])[1]",
+    toogleRangeTarif: "(//span[@class='jds-toggle__slider jds-toggle__circle'])[1]",
+    specialDesc: "(//input[@placeholder='Masukkan keterangan khusus berupa text atau link'])[1]",
 
     // Waktu Operasional
     // Day

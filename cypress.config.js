@@ -24,14 +24,13 @@ module.exports = defineConfig({
       "apiToken": "faa1d80f16627da3fa736f3b76614d156edce6f8",
       "projectCode": "IPJ",
       "logging": true,
-      "runComplete": true,
+      "runComplete": false,
       "basePath": "https://api.qase.io/v1",
       "video": false,
       "environmentId": 2
     },
 
-    "video": false,
-
+    "video": true,
     testIsolation: true,
   },
 
