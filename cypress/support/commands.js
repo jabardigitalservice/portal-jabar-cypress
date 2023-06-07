@@ -47,14 +47,13 @@ Cypress.Commands.add('login', () => {
 })
 
 Cypress.Commands.add('createDataMasterService', () => {
-    // input data
     listServicePage.clickBtnCreateService()
     createServiceMasterPage.assertCreateServicePage()
+    // input data
     createServiceMasterPage.chooseUrusanPemerintahan()
     createServiceMasterPage.chooseSubUrusanPemerintahan()
     createServiceMasterPage.chooseBentukLayanan()
     createServiceMasterPage.jenisLayanan(faker.random.word(2))
-    createServiceMasterPage.subJenisLayanan(faker.random.word(2))
     createServiceMasterPage.namaLayanan(faker.company.companyName())
     createServiceMasterPage.namaProgramLayanan(faker.random.word(2))
     createServiceMasterPage.deskripsiLayanan(faker.lorem.paragraph())
@@ -70,6 +69,8 @@ Cypress.Commands.add('createDataMasterService', () => {
     createServiceMasterPage.syaratKetentuanMultiple()
     createServiceMasterPage.prosedurLayananMultiple()
     createServiceMasterPage.tarifLayanan()
+    // createServiceMasterPage.tarifLayananRange()
+    // createServiceMasterPage.specialDescription(faker.random.word(3))
     createServiceMasterPage.waktuOperasionalSenin('06:00', '07:00')
     createServiceMasterPage.waktuOperasionalSelasa('07:00', '15:00')
     createServiceMasterPage.contactHotlinePhone('089928883746')
@@ -91,5 +92,12 @@ Cypress.Commands.add('createDataMasterService', () => {
     createServiceMasterPage.clickBtnTambahkanLayanan()
     createServiceMasterPage.clickBtnSaveCreateService()
     createServiceMasterPage.clickBtnUnderstand()
+
+    // Delete
+    // listServicePage.clickBtnAksi()
+    // listServicePage.clickBtnDelete()
+    // deleteServicePage.modalsConfirmationDelete()
+    // deleteServicePage.clickBtnYesDelete()
+    // deleteServicePage.clickBtnUnderstand()
     cy.wait(3000)
 })

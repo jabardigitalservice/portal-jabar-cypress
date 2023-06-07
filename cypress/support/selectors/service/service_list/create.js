@@ -58,9 +58,9 @@ module.exports = {
 
     // Fasilitas Layanan
     fasilitasLayanan: "//input[@placeholder='Masukkan fasilitas layanan']",
-    fasilitasLayanan2: "//input[@placeholder='Masukkan fasilitas layanan'][2]",
-    fasilitasLayanan3: "//input[@placeholder='Masukkan fasilitas layanan'][3]",
-    fasilitasLayanan4: "//input[@placeholder='Masukkan fasilitas layanan'][4]",
+    fasilitasLayanan2: "(//input[@placeholder='Masukkan fasilitas layanan'])[2]",
+    fasilitasLayanan3: "(//input[@placeholder='Masukkan fasilitas layanan'])[3]",
+    fasilitasLayanan4: "(//input[@placeholder='Masukkan fasilitas layanan'])[4]",
     btnTambahFasilitasManfaat: "Tambahkan Fasilitas",
 
     // Alamat Website
@@ -68,23 +68,23 @@ module.exports = {
 
     // Tautan Layanan
     btnTambahTautan: "Tambahkan Tautan Layanan",
-    dropdownTautan: ".jds-input-text-edge__dropdown-trigger",
-    dropdownTautan2: ":nth-child(24) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > .jds-input-text-edge > .jds-input-text-edge__dropdown-trigger",
-    dropdownTautan3: ":nth-child(25) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > .jds-input-text-edge > .jds-input-text-edge__dropdown-trigger",
-    dropdownTautan4: ":nth-child(26) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > .jds-input-text-edge > .jds-input-text-edge__dropdown-trigger",
-    tautanGoogleForm: "Google Form",
-    tautanPlaystore: "Playstore",
-    tautanAppStore: "App Store",
+    dropdownTautan: "span.grid > div:nth-of-type(1) > div > div > div > div",
+    dropdownTautan2: "span:nth-of-type(17) > div:nth-of-type(1) > div > div > div > div",
+    dropdownTautan3: ":nth-child(24) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > .jds-input-text-edge > .jds-input-text-edge__dropdown-trigger",
+    dropdownTautan4: ":nth-child(25) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > .jds-input-text-edge > .jds-input-text-edge__dropdown-trigger",
+    tautanGoogleForm: "div.w-full > div > div li:nth-of-type(1) > a",
+    tautanPlaystore: "span:nth-of-type(18) li:nth-of-type(2) > a",
+    tautanAppStore: "span:nth-of-type(18) li:nth-of-type(3) > a",
     tautanWebsite: "Website",
-    tautanLayanan1: "//input[@placeholder='https://']",
+    tautanLayanan1: "span.grid > div:nth-of-type(1) input",
     tautanLayanan2: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/span[1]/form[1]/section[2]/span[1]/fieldset[1]/section[1]/div[2]/div[1]/section[1]/span[18]/div[1]/div[1]/div[1]/input[1]",
     tautanLayanan3: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/span[1]/form[1]/section[2]/span[1]/fieldset[1]/section[1]/div[2]/div[1]/section[1]/span[19]/div[1]/div[1]/div[1]/input[1]",
 
     // Label Tautan
-    labelTautan1: "(//input[@placeholder='Masukkan label tautan'])",
-    labelTautan2: "(//input[@placeholder='Masukkan label tautan'])[2]",
-    labelTautan3: "(//input[@placeholder='Masukkan label tautan'])[3]",
-    labelTautan4: "(//input[@placeholder='Masukkan label tautan'])[4]",
+    labelTautan1: "span.grid > div:nth-of-type(2) input",
+    labelTautan2: ":nth-child(23) > :nth-child(2) > .jds-input-text > .jds-input-text__input-wrapper > input",
+    labelTautan3: ":nth-child(24) > :nth-child(2) > .jds-input-text > .jds-input-text__input-wrapper > input",
+    labelTautan4: ":nth-child(25) > :nth-child(2) > .jds-input-text > .jds-input-text__input-wrapper > input",
 
     // Syarat dan Ketentuan Layanan
     btnTambahSk: "Tambahkan Syarat dan Ketentuan",
@@ -100,16 +100,20 @@ module.exports = {
 
     // Tarif Layanan
     tarifLayanan: "(//input[@placeholder='cth: 7000'])[1]",
+    tarifLayananMax: "(//input[@placeholder='cth: 7000'])[2]",
+    checkSpecialDesc: "(//i[@role='checkbox'])[1]",
+    toogleRangeTarif: "(//span[@class='jds-toggle__slider jds-toggle__circle'])[1]",
+    specialDesc: "(//input[@placeholder='Masukkan keterangan khusus berupa text atau link'])[1]",
 
     // Waktu Operasional
     // Day
-    senin: "(//i[@role='checkbox'])[1]",
-    selasa: "(//i[@role='checkbox'])[2]",
-    rabu: "(//i[@role='checkbox'])[3]",
-    kamis: "(//i[@role='checkbox'])[4]",
-    jumat: "(//i[@role='checkbox'])[5]",
-    sabtu: "(//i[@role='checkbox'])[6]",
-    minggu: "(//i[@role='checkbox'])[7]",
+    senin: "(//i[@role='checkbox'])[2]",
+    selasa: "(//i[@role='checkbox'])[3]",
+    rabu: "(//i[@role='checkbox'])[4]",
+    kamis: "(//i[@role='checkbox'])[5]",
+    jumat: "(//i[@role='checkbox'])[6]",
+    sabtu: "(//i[@role='checkbox'])[7]",
+    minggu: "(//i[@role='checkbox'])[8]",
 
     // Start Time
     startTimeSenin: "(//input[@placeholder='cth: 06:00'])[1]",
@@ -193,11 +197,12 @@ module.exports = {
     namaSosmed1: ":nth-child(1) > :nth-child(1) > #socialMedia > .jds-input-text__input-wrapper > input",
     namaSosmed2: ":nth-child(2) > :nth-child(1) > #socialMedia > .jds-input-text__input-wrapper > input",
     namaSosmed3: ":nth-child(3) > :nth-child(1) > #socialMedia > .jds-input-text__input-wrapper > input",
+    listSocmed: "(//ul[@role='dropdown'])[1]",
     dropdownSosmed1: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/span[1]/form[1]/section[2]/span[1]/fieldset[1]/section[2]/div[2]/div[1]/section[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]",
     dropdownSosmed2: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/span[1]/form[1]/section[2]/span[1]/fieldset[1]/section[2]/div[2]/div[1]/section[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]",
     dropdownSosmed3: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/span[1]/form[1]/section[2]/span[1]/fieldset[1]/section[2]/div[2]/div[1]/section[1]/div[3]/div[2]/div[1]/div[1]/div[1]/div[1]",
     facebook: "Facebook",
-    instagram: "Intragram",
+    instagram: "Instagram",
     twitter: "Twitter",
     youtube: "Youtube",
     urlSosmed1: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/span[1]/form[1]/section[2]/span[1]/fieldset[1]/section[2]/div[2]/div[1]/section[1]/div[1]/div[2]/div[1]/div[1]/input[1]",

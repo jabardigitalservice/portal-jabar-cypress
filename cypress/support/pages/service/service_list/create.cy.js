@@ -275,20 +275,45 @@ export class CreateServiceMasterPage {
 
     tautanLayananMultiple() {
         cy.readFile(dataWizard1).then((object) => {
+            // cy.get("span.grid > div:nth-of-type(1) > div > div > div > div").click();
+            // cy.get("div.w-full > div > div li:nth-of-type(1) > a").click();
+            // cy.get("span.grid > div:nth-of-type(1) input").type("test");
+            // cy.get("span.grid > div:nth-of-type(2) input").type("he");
+            // cy.get("fieldset > section:nth-of-type(1) div:nth-of-type(5) span").click();
+
+            // // data 2
+            // cy.get(":nth-child(23) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > .jds-input-text-edge > .jds-input-text-edge__dropdown-trigger").click(); //dropdown playstire
+            // cy.get(':nth-child(23) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > .jds-input-text-edge > .jds-input-text-edge__dropdown > :nth-child(2) > a').click(); //choose playstore
+            // cy.get(':nth-child(23) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > input').type("play");
+            // cy.get(':nth-child(23) > :nth-child(2) > .jds-input-text > .jds-input-text__input-wrapper > input').type("playlabel");
+            // cy.get("fieldset > section:nth-of-type(1) div:nth-of-type(5) span").click();
+
+            // // data 3
+            // cy.get(':nth-child(24) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > .jds-input-text-edge > .jds-input-text-edge__dropdown-trigger').click();
+            // cy.get(':nth-child(24) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > .jds-input-text-edge > .jds-input-text-edge__dropdown > :nth-child(3) > a').click();
+            // cy.get(':nth-child(24) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > input').type("applink");
+            // cy.get(':nth-child(24) > :nth-child(2) > .jds-input-text > .jds-input-text__input-wrapper > input').type("applabel");
+            // cy.get("div:nth-of-type(5) > button").click();
+
+            // // data 4
+            // cy.get(':nth-child(25) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > .jds-input-text-edge > .jds-input-text-edge__dropdown-trigger').click();
+            // cy.get(':nth-child(25) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > .jds-input-text-edge > .jds-input-text-edge__dropdown > :nth-child(4) > a').click();
+            // cy.get(':nth-child(25) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > input').type("weblink");
+            // cy.get(':nth-child(25) > :nth-child(2) > .jds-input-text > .jds-input-text__input-wrapper > input').type("weblabel");
+
             // Data 1
             const dropdownTautan = cy.get(create_service.dropdownTautan).as('dropdownTautan')
             dropdownTautan.click()
-
-            const tautanGForm = cy.contains(create_service.tautanGoogleForm).as('tautanGForm')
+            const tautanGForm = cy.get(create_service.tautanGoogleForm).as('tautanGForm')
             tautanGForm.click({ force: true })
 
-            const tautanLayanan1 = cy.xpath(create_service.tautanLayanan1).as('tautanLayanan1')
+            const tautanLayanan1 = cy.get(create_service.tautanLayanan1).as('tautanLayanan1')
             const textUrl = faker.image.technics()
             object.tautanLayanan1 = textUrl
             cy.writeFile(dataWizard1, object)
             tautanLayanan1.type(textUrl)
 
-            const labelTautan1 = cy.xpath(create_service.labelTautan1).as('labelTautan1')
+            const labelTautan1 = cy.get(create_service.labelTautan1).as('labelTautan1')
             const textLabel1 = faker.random.word()
             object.labelTautan1 = textLabel1
             cy.writeFile(dataWizard1, object)
@@ -297,19 +322,19 @@ export class CreateServiceMasterPage {
             this.clickBtnTambahTautan()
 
             // Data 2
-            const dropdownTautan2 = cy.get(create_service.dropdownTautan2).as('dropdownTautan')
+            const dropdownTautan2 = cy.get(":nth-child(23) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > .jds-input-text-edge > .jds-input-text-edge__dropdown-trigger").as('dropdownTautan')
             dropdownTautan2.click()
 
-            const tautanPlaystore = cy.xpath("(//a[contains(text(),'Playstore')])[2]").as('tautanPlaystore')
-            tautanPlaystore.click({ force: true })
+            const tautanPlaystore = cy.get(":nth-child(23) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > .jds-input-text-edge > .jds-input-text-edge__dropdown > :nth-child(2) > a").as('tautanPlaystore')
+            tautanPlaystore.click()
 
-            const tautanLayanan2 = cy.get(':nth-child(24) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > input').as('tautanLayanan2')
+            const tautanLayanan2 = cy.get(':nth-child(23) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > input').as('tautanLayanan2')
             const textUrl2 = faker.image.technics()
             object.tautanLayanan2 = textUrl2
             cy.writeFile(dataWizard1, object)
             tautanLayanan2.type(textUrl2)
 
-            const labelTautan2 = cy.xpath(create_service.labelTautan2).as('labelTautan2')
+            const labelTautan2 = cy.get(create_service.labelTautan2).as('labelTautan2')
             const textLabel2 = faker.random.word()
             object.labelTautan2 = textLabel2
             cy.writeFile(dataWizard1, object)
@@ -321,16 +346,16 @@ export class CreateServiceMasterPage {
             const dropdownTautan3 = cy.get(create_service.dropdownTautan3).as('dropdownTautan')
             dropdownTautan3.click()
 
-            const tautanAppstore = cy.xpath("(//a[contains(text(),'App Store')])[3]").as('tautanAppStore')
-            tautanAppstore.click({ force: true })
+            const tautanAppstore = cy.get(":nth-child(24) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > .jds-input-text-edge > .jds-input-text-edge__dropdown > :nth-child(3) > a").as('tautanAppStore')
+            tautanAppstore.click()
 
-            const tautanLayanan3 = cy.get(':nth-child(25) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > input').as('tautanLayanan3')
+            const tautanLayanan3 = cy.get(':nth-child(24) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > input').as('tautanLayanan3')
             const textUrl3 = faker.image.technics()
             object.tautanLayanan3 = textUrl3
             cy.writeFile(dataWizard1, object)
             tautanLayanan3.type(textUrl3)
 
-            const labelTautan3 = cy.xpath(create_service.labelTautan3).as('labelTautan3')
+            const labelTautan3 = cy.get(create_service.labelTautan3).as('labelTautan3')
             const textLabel3 = faker.random.word()
             object.labelTautan3 = textLabel3
             cy.writeFile(dataWizard1, object)
@@ -342,16 +367,16 @@ export class CreateServiceMasterPage {
             const dropdownTautan4 = cy.get(create_service.dropdownTautan4).as('dropdownTautan')
             dropdownTautan4.click()
 
-            const tautanWebsite = cy.xpath("(//a[contains(text(),'Website')])[4]").as('tautanWebsite')
+            const tautanWebsite = cy.get(":nth-child(25) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > .jds-input-text-edge > .jds-input-text-edge__dropdown > :nth-child(4) > a").as('tautanWebsite')
             tautanWebsite.click({ force: true })
 
-            const tautanLayanan4 = cy.get(':nth-child(26) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > input').as('tautanLayanan4')
+            const tautanLayanan4 = cy.get(':nth-child(25) > :nth-child(1) > .jds-input-text > .jds-input-text__input-wrapper > input').as('tautanLayanan4')
             const textUrl4 = faker.image.technics()
             object.tautanLayanan4 = textUrl4
             cy.writeFile(dataWizard1, object)
             tautanLayanan4.type(textUrl4)
 
-            const labelTautan4 = cy.xpath(create_service.labelTautan4).as('labelTautan4')
+            const labelTautan4 = cy.get(create_service.labelTautan4).as('labelTautan4')
             const textLabel4 = faker.random.word()
             object.labelTautan4 = textLabel4
             cy.writeFile(dataWizard1, object)
@@ -424,6 +449,42 @@ export class CreateServiceMasterPage {
             cy.writeFile(dataWizard1, object)
         })
     }
+
+    tarifLayananRange() {
+        cy.readFile(dataWizard1).then((object) => {
+            const toogle = cy.xpath(create_service.toogleRangeTarif).as('toogleTarif')
+            const tarifLayanan = cy.xpath(create_service.tarifLayanan).as('tarifLayanan')
+            const tarifLayananMax = cy.xpath(create_service.tarifLayananMax).as('tarifLayananMax')
+            toogle.click()
+            // Tarif Min
+            tarifLayanan.clear().type('10000')
+            object.tarifLayanan = '10000'
+            cy.writeFile(dataWizard1, object)
+            // Tarif Max
+            tarifLayananMax.clear().type('15000')
+            object.tarifLayananMax = '15000'
+            cy.writeFile(dataWizard1, object)
+        })
+    }
+
+    specialDescription(desc) {
+        cy.readFile(dataWizard1).then((object) => {
+            const checkbox = cy.xpath(create_service.checkSpecialDesc).as('checkDesc')
+            const specialDesc = cy.xpath(create_service.specialDesc).as('formSpecialDesc')
+            const tarifLayanan = cy.xpath(create_service.tarifLayanan).as('tarifLayanan')
+            const tarifLayananMax = cy.xpath(create_service.tarifLayananMax).as('tarifLayananMax')
+            // Click Checkbox and assertion
+            checkbox.click()
+            cy.wait(2000)
+            tarifLayanan.should('have.attr', 'disabled')
+            tarifLayananMax.should('have.attr', 'disabled')
+            // type description
+            object.tarifLayanan = desc
+            cy.writeFile(dataWizard1, object)
+            specialDesc.clear().type(desc)
+        })
+    }
+
 
     // waktuOperasional(day, startTime, endTime) {
     //     day = cy.xpath(create_service.senin)
@@ -527,29 +588,28 @@ export class CreateServiceMasterPage {
         kontakLokasi1.type('082289993847')
 
         // Data 2
-        const dropdownLokasi2 = cy.xpath("(//input[@placeholder='Pilih Jenis Lokasi'])[2]").as('dropdownLokasi')
-        dropdownLokasi2.click()
+        cy.get("div > section > div:nth-of-type(2) > div:nth-of-type(1) div.jds-popover__activator input").click();
+        cy.get("div > section > div:nth-of-type(2) li:nth-of-type(1)").click();
+        cy.get("div:nth-of-type(2) > div:nth-of-type(2) div.jds-popover__activator input").click();
+        cy.get("div:nth-of-type(2) > div:nth-of-type(2) li:nth-of-type(1) > span").click();
+        cy.get("div:nth-of-type(2) > div:nth-of-type(5) input").click();
+        cy.get("div:nth-of-type(2) > div:nth-of-type(5) input").clear().type("087787772635");
 
-        const unit2 = cy.xpath("(//li[@class='jds-options__option-list-item'])[250]").as('chooseUnit')
-        unit2.click()
+        // const dropdownLokasi2 = cy.xpath("(//input[@placeholder='Pilih Jenis Lokasi'])[2]").as('dropdownLokasi')
+        // dropdownLokasi2.click()
 
-        const dropdownPj2 = cy.xpath("(//input[@placeholder='Pilih Penanggung Jawab Lokasi'])[2]").as('dropdownPenanggungJawab')
-        dropdownPj2.click()
+        // const unit2 = cy.xpath("(//li[@class='jds-options__option-list-item'])[250]").as('chooseUnit')
+        // unit2.click()
 
-        const search2 = cy.xpath("(//input[@type='text'])[60]").as('searchType2')
-        search2.type('UPTD Pusat Pengelolaan Pendapatan Daerah Wilayah Kota Depok I', { force: true })
+        // const dropdownPj2 = cy.xpath("(//input[@placeholder='Pilih Penanggung Jawab Lokasi'])[2]").as('dropdownPenanggungJawab')
+        // dropdownPj2.click()
 
-        // const namaLokasi1 = cy.xpath(create_service.namaLokasi1)
-        // namaLokasi1.clear()
-        // namaLokasi1.type('Lokasi 1')
+        // const search2 = cy.xpath("(//input[@type='text'])[60]").as('searchType2')
+        // search2.type('UPTD Pusat Pengelolaan Pendapatan Daerah Wilayah Kota Depok I', { force: true })
 
-        // const alamatLokasi1 = cy.xpath(create_service.alamatLokasi1)
-        // alamatLokasi1.clear()
-        // alamatLokasi1.type('Lokasi 1')
-
-        const kontakLokasi2 = cy.xpath(create_service.kontakLokasi1).as('kontakLokasi1')
-        kontakLokasi1.clear()
-        kontakLokasi1.type('082289993848')
+        // const kontakLokasi2 = cy.xpath(create_service.kontakLokasi1).as('kontakLokasi1')
+        // kontakLokasi1.clear()
+        // kontakLokasi1.type('082289993848')
     }
 
     clickBtnSimpanLanjutkan() {
@@ -562,7 +622,7 @@ export class CreateServiceMasterPage {
                 cy.xpath("(//h2[@class='font-roboto font-medium text-blue-gray-800 text-[16px] leading-[28px] pb-7'])[1]").should('contain', 'Aplikasi')
             } else {
                 cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/span[1]/form[1]/section[2]/span[1]/fieldset[1]/section[1]/img[1]")
-                    .should('have.attr', 'src', '/assets/ilustrasi-layanan-master-data-offline.ab4530ff.svg"')
+                    .should('have.attr', 'src', '/assets/ilustrasi-layanan-master-data-offline.ab4530ff.svg')
             }
         })
     }
@@ -701,7 +761,16 @@ export class CreateServiceMasterPage {
         // dropdown
         const chooseSocmed1 = cy.xpath(create_service.dropdownSosmed1)
         chooseSocmed1.click()
-        cy.wait(2000)
+
+        // Asserion Socmed
+        const listSocmed = cy.xpath(create_service.listSocmed)
+        listSocmed.find('li').should('have.length', 5)
+            .and('contain', 'Facebook')
+            .and('contain', 'Instagram')
+            .and('contain', 'Twitter')
+            .and('contain', 'Youtube')
+            .and('contain', 'Tiktok')
+        cy.wait(1000)
 
         // facebook
         const socmed1 = cy.contains(create_service.facebook)

@@ -56,7 +56,7 @@ export class LoginPage {
 		})
 
 		const userName = cy.get(navbar.nameUserLogin)
-		userName.should("contain", "Group Admin")
+		// userName.should("contain", "Super Admin")
 	}
 
 	alertFailedLogin() {

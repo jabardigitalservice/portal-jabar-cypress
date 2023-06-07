@@ -11,9 +11,9 @@ before(() => {
     })
 })
 
-beforeEach(() => {
-    loginPage.navigateLoginPage()
-})
+// beforeEach(() => {
+//     loginPage.navigateLoginPage()
+// })
 
 afterEach(() => {
     qase(230,
@@ -24,9 +24,11 @@ afterEach(() => {
 describe("Login Positive Scenario", () => {
     qase(224,
         it("S22A2 - Success Login - Email and password Valid", () => {
+            loginPage.navigateLoginPage()
             loginPage.enterEmail(user.email)
             loginPage.enterPassword(user.password)
             loginPage.clickBtnMasuk()
+            cy.wait(5000)
             loginPage.loadCmsPage()
         })
     )

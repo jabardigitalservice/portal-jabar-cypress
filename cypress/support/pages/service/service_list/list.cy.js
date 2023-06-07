@@ -13,7 +13,7 @@ export class ListServicePage {
         const tabMenu = cy.xpath('/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/ul[1]')
         tabMenu.find('li').should('have.length', 3)
             .and('contain', 'Daftar Layanan')
-            .and('contain', 'Daftar Publikasi Layanan')
+            .and('contain', 'Daftar Publikasi')
             .and('contain', 'Program Unggulan')
     }
 

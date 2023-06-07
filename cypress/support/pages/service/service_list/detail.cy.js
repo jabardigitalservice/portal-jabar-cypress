@@ -37,7 +37,6 @@ export class DetailServicePage {
                 .and('contain', subUrusan)
                 .and('contain', bentukLayanan)
                 .and('contain', jenisLayanan)
-                .and('contain', subJenisLayanan)
                 .and('contain', namaLayanan)
                 .and('contain', namaProgramLayanan)
                 .and('contain', deskripsiLayanan)
@@ -65,8 +64,12 @@ export class DetailServicePage {
             const namaAplikasi = object.namaAplikasi
             const serviceInformationTable = cy.xpath('/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[2]/div[1]')
 
-            serviceInformationTable.should('contain', statusKetersediaanAplikasi)
-                .and('contain', namaAplikasi)
+            if (object.teknisLayanan == 'offline') {
+                cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[2]/div[1]/table[1]/tbody[1]").should('contain', '-')
+            } else {
+                serviceInformationTable.should('contain', statusKetersediaanAplikasi)
+                    .and('contain', namaAplikasi)
+            }
         })
     }
 

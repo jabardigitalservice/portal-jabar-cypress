@@ -35,7 +35,7 @@ beforeEach(() => {
 })
 
 describe('Detail Positive Scenario', () => {
-    qase(
+    qase([2861, 2862, 2863, 2869, 2873],
         it('Assertion Detail Page', () => {
             // Create Data 
             cy.createDataMasterService()

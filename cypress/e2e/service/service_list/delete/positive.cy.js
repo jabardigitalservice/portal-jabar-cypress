@@ -30,20 +30,18 @@ beforeEach(() => {
 })
 
 describe('Service Positive Scenario', { testIsolation: true }, () => {
-    qase([],
+    qase([2882],
         it('Delete Data', () => {
-            for (let i = 0; i < 1; i++) {
-                // Delete
-                listServicePage.clickBtnAksi()
-                listServicePage.clickBtnDelete()
-                deleteServicePage.modalsConfirmationDelete()
-                deleteServicePage.clickBtnYesDelete()
-                deleteServicePage.clickBtnUnderstand()
-                // cy.readFile(filename).then((object) => {
-                //     agendaPage.searchAgenda(object.namaLayanan)
-                // })
-                // agendaPage.assertNullDataTable()
-            }
+            // Delete
+            listServicePage.clickBtnAksi()
+            listServicePage.clickBtnDelete()
+            deleteServicePage.modalsConfirmationDelete()
+            deleteServicePage.clickBtnYesDelete()
+            deleteServicePage.clickBtnUnderstand()
+            // cy.readFile(filename).then((object) => {
+            //     agendaPage.searchAgenda(object.namaLayanan)
+            // })
+            // agendaPage.assertNullDataTable()
         })
     )
 })
