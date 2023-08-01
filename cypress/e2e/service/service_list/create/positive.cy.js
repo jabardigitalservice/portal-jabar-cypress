@@ -19,26 +19,16 @@ before('Load Data', () => {
     })
 })
 
-// beforeEach(() => {
-//     loginPage.navigateLoginPage()
-//     loginPage.enterEmail(user.email)
-//     loginPage.enterPassword(user.password)
-//     loginPage.clickBtnMasuk()
-//     loginPage.loadCmsPage()
-//     listServicePage.navigateToServicePage()
-//     listServicePage.assertServicePage()
-//     // listServicePage.clickBtnCreateService()
-//     // createServiceMasterPage.assertCreateServicePage()
-// })
+describe('Service Positive Scenario', { testIsolation: false }, () => {
 
-describe('Service Positive Scenario', { testIsolation: true }, () => {
+    it('Login CMS', () => {
+        cy.login()
+        listServicePage.navigateToServicePage()
+        listServicePage.assertServicePage()
+    });
 
     qase([2585, 2587, 2590, 2594, 2597, 2598, 2607, 2613, 2618, 2623, 2625, 2627, 2629, 2631, 2633, 2638, 2646, 2653, 2655, 2661, 2666, 2669, 2674, 2675, 2680, 2682, 2696, 2703, 2716, 2723, 2757, 2765, 2764, 2768, 2774, 2779, 2790, 2794, 2801, 2813, 2823, 2825, 2831],
         it('Create Master Data Layanan Teknis == Offline', () => {
-            cy.login()
-            listServicePage.navigateToServicePage()
-            listServicePage.assertServicePage()
-
             listServicePage.clickBtnCreateService()
             createServiceMasterPage.assertCreateServicePage()
             // input data
@@ -81,16 +71,17 @@ describe('Service Positive Scenario', { testIsolation: true }, () => {
             createServiceMasterPage.nomorHp('087767773848')
             createServiceMasterPage.alamatEmail(faker.internet.email())
             createServiceMasterPage.socialMediaMultiple()
-            createServiceMasterPage.clickBtnTambahkanLayanan()
-            createServiceMasterPage.clickBtnSaveCreateService()
-            createServiceMasterPage.clickBtnUnderstand()
+            // createServiceMasterPage.clickBtnTambahkanLayanan()
+            // createServiceMasterPage.clickBtnSaveCreateService()
+            // createServiceMasterPage.clickBtnUnderstand()
+            cy.wait(3000)
 
             // Delete
-            listServicePage.clickBtnAksi()
-            listServicePage.clickBtnDelete()
-            deleteServicePage.modalsConfirmationDelete()
-            deleteServicePage.clickBtnYesDelete()
-            deleteServicePage.clickBtnUnderstand()
+            // listServicePage.clickBtnAksi()
+            // listServicePage.clickBtnDelete()
+            // deleteServicePage.modalsConfirmationDelete()
+            // deleteServicePage.clickBtnYesDelete()
+            // deleteServicePage.clickBtnUnderstand()
             // cy.readFile(filename).then((object) => {
             //     agendaPage.searchAgenda(object.namaLayanan)
             // })

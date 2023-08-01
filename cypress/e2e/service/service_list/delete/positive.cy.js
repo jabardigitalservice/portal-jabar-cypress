@@ -20,11 +20,7 @@ before('Load Data', () => {
 })
 
 beforeEach(() => {
-    loginPage.navigateLoginPage()
-    loginPage.enterEmail(user.email)
-    loginPage.enterPassword(user.password)
-    loginPage.clickBtnMasuk()
-    loginPage.loadCmsPage()
+    cy.login()
     listServicePage.navigateToServicePage()
     listServicePage.assertServicePage()
 })

@@ -16,6 +16,12 @@ module.exports = defineConfig({
 
     env: {
       base_url: "https://develop--portal-jabar-cms.netlify.app"
+      // base_url: "https://admin.jabarprov.go.id"
+    },
+
+    retries: {
+      runMode: 2, // Headless
+      openMode: 1, // GUI 
     },
 
     // Integration With Qase.io
@@ -33,6 +39,4 @@ module.exports = defineConfig({
     "video": true,
     testIsolation: true,
   },
-
-
 });

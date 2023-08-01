@@ -209,7 +209,9 @@ module.exports = {
     urlSosmed2: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/span[1]/form[1]/section[2]/span[1]/fieldset[1]/section[2]/div[2]/div[1]/section[1]/div[2]/div[2]/div[1]/div[1]/input[1]",
     urlSosmed3: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/span[1]/form[1]/section[2]/span[1]/fieldset[1]/section[2]/div[2]/div[1]/section[1]/div[3]/div[2]/div[1]/div[1]/input[1]",
     btnTambahkanLayanan: "Tambahkan Layanan",
-    btnSaveCreateService: "/html[1]/body[1]/div[1]/div[2]/div[1]/section[1]/div[3]/section[1]/button[2]"
+    btnSaveDraft: "Simpan",
+    btnSaveCreateService: "/html[1]/body[1]/div[1]/div[2]/div[1]/section[1]/div[3]/section[1]/button[2]",
+    btnYesSaveDraft: "/html[1]/body[1]/div[1]/div[2]/div[1]/section[1]/div[3]/div[1]/button[2]"
 
 
     // ====== Wizard 3 ===== 
