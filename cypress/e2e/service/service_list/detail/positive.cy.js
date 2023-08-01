@@ -47,9 +47,11 @@ describe('Detail Positive Scenario', () => {
 
             // Assert Service Tab
             detailPage.assertServiceData()
+
             // Assert Application Tab
             detailPage.clickApplicationTab()
             detailPage.assertionApplicationData()
+
             // // Assert Additional Information Tab
             detailPage.clickAdditionalInformationTab()
             detailPage.assertionAdditionalInfoData()

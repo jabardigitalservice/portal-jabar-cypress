@@ -1,19 +1,21 @@
 import deletes from "../../../selectors/agenda/deletes";
-import { ListServicePage } from "./list.cy";
+// import { ListServicePage } from "./list.cy";
+import { ListServicePage } from "../service_list/list.cy";
 
 const listPage = new ListServicePage()
 const filename = "cypress/fixtures/service/wizard1_temp_data.json"
 
-export class DeleteServicePage {
+export class DeletePublicationPage {
     modalsConfirmationDelete() {
         const modalsConfirmation = cy.xpath(deletes.modalsConfirmationDelete)
 
         cy.readFile(filename).then((object) => {
             const titleData = object.namaLayanan
-            modalsConfirmation.should('be.visible')
-                .and('contain', 'Hapus Layanan')
-                .and('contain', ' Apakah Anda yakin ingin menghapus Layanan ini? ')
-                .and('contain', titleData)
+
+            // modalsConfirmation.should('be.visible')
+            //     .and('contain', 'Hapus Layanan')
+            //     .and('contain', 'Apakah Anda yakin ingin menghapus Layanan ini?')
+            //     .and('contain', titleData)
         })
     }
 

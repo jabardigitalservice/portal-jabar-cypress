@@ -23,17 +23,30 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import 'cypress-file-upload';
 
 import 'cypress-file-upload';
 import { ListServicePage } from './pages/service/service_list/list.cy';
 import { CreateServiceMasterPage } from './pages/service/service_list/create.cy';
+import { CreateInfograficBannerPage } from './pages/infografis/create.cy';
 import { LoginPage } from './pages/auth/login_page.cy';
+import { ListInfografisBannerPage } from './pages/infografis/list.cy';
 
 const { faker } = require('@faker-js/faker')
 let listServicePage = new ListServicePage()
+let listInfographicsPage = new ListInfografisBannerPage()
 let createServiceMasterPage = new CreateServiceMasterPage()
+let createInfographicPage = new CreateInfograficBannerPage()
 let loginPage = new LoginPage()
 let user
+let dataImage
+
+before('Load Data', () => {
+    cy.then(Cypress.session.clearCurrentSessionData)
+    cy.fixture("landing_page/infographics/data_upload.json").then((data) => {
+        dataImage = data
+    })
+})
 
 Cypress.Commands.add('login', () => {
     cy.fixture("credentials.json").then((data) => {
@@ -100,4 +113,23 @@ Cypress.Commands.add('createDataMasterService', () => {
     // deleteServicePage.clickBtnYesDelete()
     // deleteServicePage.clickBtnUnderstand()
     cy.wait(3000)
+})
+
+Cypress.Commands.add('createInfographicsBanner', () => {
+    // Navigate to Tab Infographic Banner
+    listInfographicsPage.clickBtnCreateInfografic()
+    createInfographicPage.assertCreateInfograficPage()
+
+    // Input data 
+    createInfographicPage.uploadImgDesktop(dataImage.img4876x1627)
+    createInfographicPage.uploadImgMobile(dataImage.img4876x1627)
+    createInfographicPage.inputTitleBanner(faker.company.companyName())
+    createInfographicPage.inputLinkRedirect(faker.image.imageUrl())
+    createInfographicPage.clickBtnSaveData()
+    createInfographicPage.btnYesSaveModalsConfirmation()
+    createInfographicPage.btnUnderstand()
+
+    // Assertion in List Data Infografis Banner
+    listInfographicsPage.navigateToInfografisBannerTab()
+    listInfographicsPage.assertNewData()
 })

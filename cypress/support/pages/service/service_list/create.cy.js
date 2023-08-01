@@ -627,6 +627,16 @@ export class CreateServiceMasterPage {
         })
     }
 
+    clickBtnSimpanLanjutkanDraft() {
+        const btnSimpanLanjutkan = cy.contains(create_service.btnSimpanLanjutkan)
+        btnSimpanLanjutkan.click()
+
+        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/span[1]/form[1]/section[2]/span[1]/fieldset[1]/section[1]/img[1]")
+            .should('have.attr', 'src', '/assets/ilustrasi-layanan-master-data-offline.ab4530ff.svg')
+
+
+    }
+
     clickBtnSimpanLanjutkan2() {
         const btnSimpanLanjutkan = cy.contains(create_service.btnSimpanLanjutkan)
         btnSimpanLanjutkan.click()
@@ -825,6 +835,15 @@ export class CreateServiceMasterPage {
         btn.click()
     }
 
+    clickBtnSaveDraft() {
+        const btn = cy.contains(create_service.btnSaveDraft)
+        btn.click()
+    }
+    clickBtnYesSaveDraft() {
+        const btn = cy.xpath(create_service.btnYesSaveDraft)
+        btn.click()
+    }
+
     clickBtnSaveCreateService() {
         const btn = cy.xpath(create_service.btnSaveCreateService)
         btn.click()
@@ -832,6 +851,14 @@ export class CreateServiceMasterPage {
 
     clickBtnUnderstand() {
         deleteServicePage.clickBtnUnderstand()
+    }
+
+    assertAlertSuccessSaveDraft() {
+        const h1 = cy.xpath('/html[1]/body[1]/div[1]/div[2]/div[1]/section[1]/div[2]/div[1]/h1[1]')
+        h1.should('contain', 'Berhasil!')
+
+        const p = cy.xpath('/html[1]/body[1]/div[1]/div[2]/div[1]/section[1]/div[2]/div[1]/div[1]/p[1]')
+        p.should('contain', 'Layanan yang Anda buat berhasil ditambahkan.')
     }
     // Wizard 3
 
