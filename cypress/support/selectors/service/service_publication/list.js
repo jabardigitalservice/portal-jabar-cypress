@@ -7,7 +7,11 @@ module.exports = {
     tabPublication: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/ul[1]/li[2]',
     textTabPublication: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/a[1]/span[1]",
     rowNewData: "(//tr)[2]",
+    search: "//input[@placeholder='Cari layanan']",
+    btnClearSearch: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[1]/section[1]/div[1]/div[1]/div[1]/button[1]",
+    tableRow: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[1]/section[1]/div[2]/div[1]/table[1]/tbody[1]/tr[1]",
+    tableBody: "//tbody",
 
     // cy.Contains()
-    btnTambahLayanan: "Tambah Layanan",
+    btnTambahLayanan: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[1]/section[1]/div[1]/a[1]",
 }

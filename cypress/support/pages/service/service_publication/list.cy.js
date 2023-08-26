@@ -3,6 +3,8 @@ import navbar from "../../../selectors/navbar";
 import sidebar from "../../../selectors/sidebar";
 import { ListServicePage } from "../service_list/list.cy";
 
+const filename = "cypress/fixtures/service/wizard1_temp_data.json"
+
 export class ListPublicationPage {
     assertServicePage() {
         // Title
@@ -34,10 +36,67 @@ export class ListPublicationPage {
         textTabPublication.should('have.class', 'text-green-700')
     }
 
-    clickBtnCreateService() {
-        const btnCreate = cy.contains(list.btnTambahLayanan).as('btnCreateService')
+    // Search
+    search(title) {
+        cy.readFile(filename).then((object) => {
+            const search = cy.xpath(list.search)
+            search.clear()
+            search.type(title).should('have.value', title.substring(0, 50));
+            cy.wait(2000)
+        })
+    }
 
-        btnCreate.should("be.visible").and("contain", "Tambah Layanan")
+    deleteKeywordSearch() {
+        const search = cy.xpath(list.search)
+        search.type("{selectall}{backspace}").should('have.value', '')
+        cy.wait(2000)
+    }
+
+    assertSearchValid() {
+        cy.readFile(filename).then((object) => {
+            const tr = cy.xpath(list.tableRow)
+            const lowerServiceUsage = object.penggunaLayanan.toLowerCase()
+            tr.should('contain', object.namaLayanan)
+                .and('contain', object.penggunaLayanan.charAt(0).toUpperCase() + lowerServiceUsage.slice(1))
+                .and('contain', object.teknisLayanan)
+        })
+    }
+
+    assertRowDefault() {
+        const tableBody = cy.xpath(list.tableBody)
+        const search = cy.xpath(list.search)
+
+        // Assertion
+        tableBody.find('tr').then(rows => {
+            const rowCount = Cypress.$(rows).length
+            expect(rowCount).to.equal(10)
+        })
+    }
+
+    assertSearchNotFound() {
+        const img = cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[1]/section[1]/div[2]/div[1]/img[1]")
+        img.should('have.attr', 'src', '/assets/search-not-found.c2800234.svg')
+
+        const titleMessage = cy.xpath("//h3[normalize-space()='Data tidak ditemukan !']")
+        titleMessage.should('contain', 'Data tidak ditemukan !')
+
+        const message = cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[1]/section[1]/div[2]/div[1]/p[1]")
+        message.should('contain', 'Data yang Kamu minta tidak dapat ditemukan. Mohon pastikan Kamu telah memasukkan informasi yang benar.')
+    }
+
+    clearSearch() {
+        const btnClear = cy.xpath(list.btnClearSearch)
+        const search = cy.xpath(list.search)
+        btnClear.click()
+        cy.wait(2000)
+        search.should('have.value', '')
+    }
+    // End Search
+
+    clickBtnCreateService() {
+        const btnCreate = cy.xpath(list.btnTambahLayanan).as('btnCreateService')
+
+        btnCreate.should("be.visible").and("contain", "Publikasi Layanan")
         btnCreate.click()
 
         cy.url().should("eq", Cypress.env("base_url") + "/layanan/daftar-publikasi/tambah")

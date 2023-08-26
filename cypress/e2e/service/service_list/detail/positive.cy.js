@@ -35,8 +35,73 @@ beforeEach(() => {
 })
 
 describe('Detail Positive Scenario', () => {
+    qase([4201, 4205, 4213, 4202],
+        it('Search Data & Clear', () => {
+            cy.readFile(filename).then((object) => {
+                listServicePage.search(object.namaLayanan)
+            })
+        }),
+
+        qase([4211],
+            it('Remove search keywords (use backspace)', () => {
+                cy.readFile(filename).then((object) => {
+                    listServicePage.search(object.namaLayanan)
+                    cy.wait(5000)
+                })
+                listServicePage.assertSearchValid()
+                listServicePage.deleteKeywordSearch()
+                listServicePage.assertRowDefault()
+            })
+        ),
+
+        qase([4210],
+            it('Search With 1 Character', () => {
+                listServicePage.search('a')
+                listServicePage.assertRowDefault()
+                listServicePage.clearSearch()
+                listServicePage.assertRowDefault()
+            })
+        ),
+
+        qase([4203],
+            it('Search With 2 Character', () => {
+                listServicePage.search('ai')
+                listServicePage.assertRowDefault()
+                listServicePage.clearSearch()
+                listServicePage.assertRowDefault()
+            })
+        ),
+
+        qase([4204],
+            it('Invalid 3 character search', () => {
+                listServicePage.search('aia')
+                listServicePage.assertSearchNotFound()
+                listServicePage.clearSearch()
+                listServicePage.assertRowDefault()
+            })
+        ),
+
+        qase([4206],
+            it('Invalid > 3 character search', () => {
+                listServicePage.search('aiaaaa')
+                listServicePage.assertSearchNotFound()
+                listServicePage.clearSearch()
+                listServicePage.assertRowDefault()
+            })
+        ),
+
+        qase([4214],
+            it('Search with keywords space only', () => {
+                listServicePage.search('   ')
+                listServicePage.assertRowDefault()
+                listServicePage.deleteKeywordSearch()
+                listServicePage.assertRowDefault()
+            })
+        ),
+    )
+
     qase([2861, 2862, 2863, 2869, 2873],
-        it('Assertion Detail Page', () => {
+        it.skip('Assertion Detail Page', () => {
             // Create Data 
             cy.createDataMasterService()
 

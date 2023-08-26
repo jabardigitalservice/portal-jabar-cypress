@@ -8,6 +8,12 @@ export class LoginPage {
 		cy.contains("Selamat Datang! Silakan masukkan e-mail dan kata sandi untuk masuk ke Portal Jabar Content Management System.")
 	}
 
+	navigateLoginPagePreview() {
+		cy.visit(Cypress.env("base_url_preview"))
+		cy.title().should("eq", "Portal Jabar - Content Management System")
+		cy.contains("Selamat Datang! Silakan masukkan e-mail dan kata sandi untuk masuk ke Portal Jabar Content Management System.")
+	}
+
 	enterEmail(email) {
 		const emails = cy.get(login.email)
 

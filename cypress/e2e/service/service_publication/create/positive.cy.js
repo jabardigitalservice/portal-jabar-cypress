@@ -17,7 +17,7 @@ let loginPage = new LoginPage()
 let deleteServicePage = new DeleteServicePage()
 let user
 let dataFile
-let filename = "cypress/fixtures/service/publication_store_data.json"
+let filename = "cypress/fixtures/service/wizard1_temp_data.json"
 
 before('Load Data', () => {
     cy.then(Cypress.session.clearCurrentSessionData)
@@ -31,14 +31,14 @@ before('Load Data', () => {
 
 describe('Service Positive Scenario', { testIsolation: false }, () => {
 
-    it.only('Login CMS', () => {
+    it('Login CMS', () => {
         cy.login()
         listServicePage.navigateToServicePage()
         listServicePage.assertServicePage()
     });
 
     qase([2950, 2957, 2961, 2966, 2971, 2973, 3156, 3157, 3158, 2977, 3001, 3004, 3009, 3011, 3034, 3293, 3298, 3300, 3394, 3395, 3430, 3059, 3056, 3063, 3079, 3084, 3086, 3089, 3090, 3097, 3170, 3175, 3177, 3177, 3117, 3124, 3180, 3185, 3187, 3167, 3168, 3200, 3205, 3207, 3212, 3213, 3214, 3215, 3216, 3217, 3218, 3219, 3220, 3221, 3222, 3411, 3235, 3241, 3242, 3243, 3245, 3246],
-        it.only('Create data publication', () => {
+        it('Create data publication', () => {
             // Create Master Data Service == Online
             cy.createDataMasterService()
 
@@ -85,11 +85,76 @@ describe('Service Positive Scenario', { testIsolation: false }, () => {
         })
     )
 
+    qase([4217, 4221, 4227, 4228, 4218],
+        it('Search Data & Clear', () => {
+            cy.readFile(filename).then((object) => {
+                listPublicationPage.search(object.namaLayanan)
+            })
+            listPublicationPage.assertSearchValid()
+            listPublicationPage.clearSearch()
+            listPublicationPage.assertRowDefault()
+        }),
+
+        qase([4226],
+            it('Remove search keywords (use backspace)', () => {
+                cy.readFile(filename).then((object) => {
+                    listPublicationPage.search(object.namaLayanan)
+                    cy.wait(5000)
+                })
+                listPublicationPage.assertSearchValid()
+                listPublicationPage.deleteKeywordSearch()
+                listPublicationPage.assertRowDefault()
+            })
+        ),
+
+        qase([4225],
+            it('Search With 1 Character', () => {
+                listPublicationPage.search('a')
+                listPublicationPage.assertRowDefault()
+                listPublicationPage.clearSearch()
+                listPublicationPage.assertRowDefault()
+            })
+        ),
+
+        qase([4219],
+            it('Search With 2 Character', () => {
+                listPublicationPage.search('ai')
+                listPublicationPage.assertRowDefault()
+                listPublicationPage.clearSearch()
+                listPublicationPage.assertRowDefault()
+            })
+        ),
+
+        qase([4220],
+            it('Invalid 3 character search', () => {
+                listPublicationPage.search('aia')
+                listPublicationPage.assertSearchNotFound()
+                listPublicationPage.clearSearch()
+                listPublicationPage.assertRowDefault()
+            })
+        ),
+
+        qase([4222],
+            it('Invalid > 3 character search', () => {
+                listPublicationPage.search('aiaaaa')
+                listPublicationPage.assertSearchNotFound()
+                listPublicationPage.clearSearch()
+                listPublicationPage.assertRowDefault()
+            })
+        ),
+
+        qase([4229],
+            it('Search with keywords space only', () => {
+                listPublicationPage.search('   ')
+                listPublicationPage.assertRowDefault()
+                listPublicationPage.deleteKeywordSearch()
+                listPublicationPage.assertRowDefault()
+            })
+        ),
+    )
+
     qase([2943, 2942, 3282, 3283, 3284],
         it('Detail Data Publication', () => {
-            // Create Master Data Service
-            // cy.createDataMasterService()
-
             // Navigate to Master Data Publication Page 
             listPublicationPage.navigateToPublicationTab()
 

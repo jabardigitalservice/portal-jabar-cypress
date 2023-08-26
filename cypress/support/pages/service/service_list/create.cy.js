@@ -847,6 +847,7 @@ export class CreateServiceMasterPage {
     clickBtnSaveCreateService() {
         const btn = cy.xpath(create_service.btnSaveCreateService)
         btn.click()
+        cy.wait(3000)
     }
 
     clickBtnUnderstand() {

@@ -41,7 +41,7 @@ export class DetailPublicationPage {
                     .and('contain', benefitValue1)
                     .and('contain', benefitValue2)
                     .and('contain', benefitValue3)
-                    .and('contain', objectPublication.urlCustomPortalJabar)
+                    .and('contain', objectPublication.urlCustomPortalJabar.toLowerCase())
             })
         })
     }
@@ -136,6 +136,6 @@ export class DetailPublicationPage {
         const btn = cy.contains('Kembali')
         btn.click()
         cy.wait(1000)
-        cy.url().should("eq", Cypress.env("base_url") + "/layanan")
+        cy.url().should("eq", Cypress.env("base_url") + "/layanan/daftar-publikasi-layanan")
     }
 }

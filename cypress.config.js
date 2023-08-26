@@ -1,4 +1,6 @@
 const { defineConfig } = require("cypress");
+require('dotenv').config()
+console.log(process.env.BASE_URL)
 
 module.exports = defineConfig({
   e2e: {
@@ -12,11 +14,10 @@ module.exports = defineConfig({
 
     // Connecting with cypress dashboard
     projectId: "gzadzk",
-    // npx cypress run --record --key 52874105-57fe-46db-b620-ba0d73dff5f6
 
     env: {
-      base_url: "https://develop--portal-jabar-cms.netlify.app"
-      // base_url: "https://admin.jabarprov.go.id"
+      base_url: process.env.BASE_URL,
+      base_url_preview: process.env.BASE_URL_PREVIEW,
     },
 
     retries: {

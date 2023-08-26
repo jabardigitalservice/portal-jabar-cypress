@@ -3,5 +3,6 @@ module.exports = {
     dashboardMenu: '[title="Dashboard"]',
     landingPageMenu: '[title="Landing Page"]',
     agendaMenu: '[title="Agenda"]',
-    layananMenu: '[title="Layanan"]'
+    layananMenu: '[title="Layanan"]',
+    profilJawaBaratMenu: '[title="Profil Jawa Barat"]'
 }

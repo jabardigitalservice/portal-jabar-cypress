@@ -405,18 +405,18 @@ export class CreatePublicationServicePage {
     }
 
     clickBtnAddService() {
-        const btn = cy.contains('Tambahkan Layanan')
+        const btn = cy.contains('Terbitkan Publikasi')
         btn.then(($btn) => {
             if ($btn.is(":disabled")) {
-                btn.should("be.disabled").and("contain", "Tambahkan Layanan")
+                btn.should("be.disabled").and("contain", "Terbitkan Publikasi")
             } else {
                 btn.should("be.visible")
-                btn.contains("Tambahkan Layanan")
+                btn.contains("Terbitkan Publikasi")
                 btn.click()
                 cy.wait(1000)
                 // Assertion Modals Confirmation
                 const modals = cy.get('.animate-slide-up > .overflow-y-auto')
-                modals.should('contain', 'Apakah Anda ingin menambah layanan ini?')
+                modals.should('contain', 'Apakah Anda ingin menerbitkan publikasi ini?')
             }
         })
     }
@@ -441,7 +441,7 @@ export class CreatePublicationServicePage {
     }
 
     btnYesSaveModalsConfirmation() {
-        const btn = cy.contains('Ya, simpan layanan')
+        const btn = cy.contains('Ya, terbitkan publikasi')
         btn.click()
         cy.wait(2000)
 
@@ -449,7 +449,7 @@ export class CreatePublicationServicePage {
         const respons = cy.get('.animate-slide-up > .overflow-y-auto > .w-full > .font-roboto')
         respons.should('contain', 'Berhasil!')
         const modals = cy.get('.animate-slide-up > .overflow-y-auto')
-        modals.should('contain', 'Layanan yang Anda buat berhasil ditambahkan.')
+        modals.should('contain', 'Publikasi yang Anda buat berhasil diterbitkan.')
     }
 
     btnUnderstand() {

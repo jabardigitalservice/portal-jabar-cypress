@@ -2,6 +2,7 @@ import { ListServicePage } from "../../../../support/pages/service/service_list/
 import { CreateServiceMasterPage } from "../../../../support/pages/service/service_list/create.cy";
 import { LoginPage } from "../../../../support/pages/auth/login_page.cy";
 import { DeleteServicePage } from "../../../../support/pages/service/service_list/delete.cy";
+import { DetailServicePage } from "../../../../support/pages/service/service_list/detail.cy";
 import { qase } from "cypress-qase-reporter/dist/mocha";
 
 const { faker } = require('@faker-js/faker')
@@ -9,6 +10,7 @@ let listServicePage = new ListServicePage()
 let createServiceMasterPage = new CreateServiceMasterPage()
 let loginPage = new LoginPage()
 let deleteServicePage = new DeleteServicePage()
+let detailPage = new DetailServicePage()
 let user
 let filename = "cypress/fixtures/service/wizard1_temp_data.json"
 
@@ -71,21 +73,103 @@ describe('Service Positive Scenario', { testIsolation: false }, () => {
             createServiceMasterPage.nomorHp('087767773848')
             createServiceMasterPage.alamatEmail(faker.internet.email())
             createServiceMasterPage.socialMediaMultiple()
-            // createServiceMasterPage.clickBtnTambahkanLayanan()
-            // createServiceMasterPage.clickBtnSaveCreateService()
-            // createServiceMasterPage.clickBtnUnderstand()
+            createServiceMasterPage.clickBtnTambahkanLayanan()
+            createServiceMasterPage.clickBtnSaveCreateService()
+            createServiceMasterPage.clickBtnUnderstand()
             cy.wait(3000)
-
-            // Delete
-            // listServicePage.clickBtnAksi()
-            // listServicePage.clickBtnDelete()
-            // deleteServicePage.modalsConfirmationDelete()
-            // deleteServicePage.clickBtnYesDelete()
-            // deleteServicePage.clickBtnUnderstand()
-            // cy.readFile(filename).then((object) => {
-            //     agendaPage.searchAgenda(object.namaLayanan)
-            // })
-            // agendaPage.assertNullDataTable()
         })
     )
+
+    qase([4201, 4205, 4213, 4202],
+        it('Search Data & Clear', () => {
+            cy.readFile(filename).then((object) => {
+                listServicePage.search(object.namaLayanan)
+            })
+        }),
+
+        qase([4211],
+            it('Remove search keywords (use backspace)', () => {
+                cy.readFile(filename).then((object) => {
+                    listServicePage.search(object.namaLayanan)
+                    cy.wait(5000)
+                })
+                listServicePage.assertSearchValid()
+                listServicePage.deleteKeywordSearch()
+                listServicePage.assertRowDefault()
+            })
+        ),
+
+        qase([4210],
+            it('Search With 1 Character', () => {
+                listServicePage.search('a')
+                listServicePage.assertRowDefault()
+                listServicePage.clearSearch()
+                listServicePage.assertRowDefault()
+            })
+        ),
+
+        qase([4203],
+            it('Search With 2 Character', () => {
+                listServicePage.search('ai')
+                listServicePage.assertRowDefault()
+                listServicePage.clearSearch()
+                listServicePage.assertRowDefault()
+            })
+        ),
+
+        qase([4204],
+            it('Invalid 3 character search', () => {
+                listServicePage.search('aia')
+                listServicePage.assertSearchNotFound()
+                listServicePage.clearSearch()
+                listServicePage.assertRowDefault()
+            })
+        ),
+
+        qase([4206],
+            it('Invalid > 3 character search', () => {
+                listServicePage.search('aiaaaa')
+                listServicePage.assertSearchNotFound()
+                listServicePage.clearSearch()
+                listServicePage.assertRowDefault()
+            })
+        ),
+
+        qase([4214],
+            it('Search with keywords space only', () => {
+                listServicePage.search('   ')
+                listServicePage.assertRowDefault()
+                listServicePage.deleteKeywordSearch()
+                listServicePage.assertRowDefault()
+            })
+        ),
+    )
+
+    qase([2861, 2862, 2863, 2869, 2873],
+        it('Assertion Detail Page', () => {
+            // Go to detail page
+            listServicePage.clickBtnAksi()
+            listServicePage.clickBtnDetail()
+            detailPage.assertDetailPage()
+
+            // Assert Service Tab
+            detailPage.assertServiceData()
+
+            // Assert Application Tab
+            detailPage.clickApplicationTab()
+            detailPage.assertionApplicationData()
+
+            // // Assert Additional Information Tab
+            detailPage.clickAdditionalInformationTab()
+            detailPage.assertionAdditionalInfoData()
+        })
+    )
+
+    it.skip('Delete Data', () => {
+        listServicePage.clickBtnAksi()
+        listServicePage.clickBtnDelete()
+        deleteServicePage.modalsConfirmationDelete()
+        deleteServicePage.clickBtnYesDelete()
+        deleteServicePage.clickBtnUnderstand()
+    })
 })
