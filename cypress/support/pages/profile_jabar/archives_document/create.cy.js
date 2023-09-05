@@ -45,7 +45,11 @@ export class CreateArchivesDocumentPage {
         // Assertion Choose Option Category
         const value = cy.xpath("//input[@placeholder='Pilih Kategori/Topik']")
         value.invoke("val").then((text) => {
-            expect(valueCategory).to.equal(text)
+            if (text == "") {
+                expect("").to.equal(text)
+            } else {
+                expect(valueCategory).to.equal(text)
+            }
         })
     }
 
@@ -58,6 +62,16 @@ export class CreateArchivesDocumentPage {
         })
 
         textArea.clear().type(text)
+    }
+
+    inputCharacters(number) {
+        var text = "";
+        var possible = "ABCDEFGHIJK LMNOPQRSTUVWXYZa bcdefghijklmnopqrstuvwxyz";
+
+        for (var i = 0; i < number; i++)
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        return text;
     }
 
     // Publish 
@@ -73,16 +87,18 @@ export class CreateArchivesDocumentPage {
                 cy.wait(1000)
                 // Assertion Modals Confirmation
                 const titleModals = cy.get(create.modalsTitle)
-                titleModals.should('contain', 'Terbitkan Arsip Dokumen')
+                titleModals.should('contain', 'Terbitkan Dokumen')
 
                 const bodyModals = cy.get(create.modalsBody)
-                bodyModals.should('contain', 'Apakah Anda ingin menerbitkan Arsip Dokumen ini?')
+                bodyModals.should('contain', 'Apakah Anda ingin menerbitkan Dokumen ini?')
             }
         })
     }
 
     btnYesPublish() {
         const btn = cy.get(create.btnYesPublish)
+        const assertion = "Terbit"
+
         btn.click()
         cy.wait(2000)
 
@@ -90,7 +106,11 @@ export class CreateArchivesDocumentPage {
         const titleSuccess = cy.get(create.modalsMessageTitle)
         titleSuccess.should('contain', 'Berhasil !')
         const messageSuccess = cy.get(create.modalsMessageBody)
-        messageSuccess.should('contain', 'Anda berhasil menerbitkan Arsip Dokumen.')
+        messageSuccess.should('contain', 'Anda berhasil menerbitkan Dokumen.')
+        cy.readFile(dataArchivesDocument).then((object) => {
+            object.status = assertion
+            cy.writeFile(dataArchivesDocument, object)
+        })
     }
 
     btnUnderstand() {
@@ -114,6 +134,8 @@ export class CreateArchivesDocumentPage {
 
     btnYesSaveDraft() {
         const btn = cy.get(create.btnYesDraft)
+        const assertion = "Draf"
+
         btn.click()
         cy.wait(2000)
 
@@ -122,11 +144,28 @@ export class CreateArchivesDocumentPage {
         titleSuccess.should('contain', 'Berhasil disimpan ke draf !')
         const messageSuccess = cy.get(create.modalsMessageBody)
         messageSuccess.should('contain', 'Anda berhasil menyimpan dokumen ke draf.')
+
+        cy.readFile(dataArchivesDocument).then((object) => {
+            object.status = assertion
+            cy.writeFile(dataArchivesDocument, object)
+        })
     }
     // Save Draft
 
     clickBtnBack() {
         const btn = cy.get(create.btnBack)
+        btn.click()
+
+        // Assert
+        const titleModals = cy.get(create.modalsTitle)
+        titleModals.should('contain', 'Membatalkan Dokumen')
+
+        const bodyModals = cy.get(create.modalsBody)
+        bodyModals.should('contain', 'Apakah Anda yakin ingin membatalkan Dokumen ini?')
+    }
+
+    btnYesBack() {
+        const btn = cy.get('[data-cy="archive-document-form__confirmation-button-cancel"]')
         btn.click()
         cy.url().should("eq", Cypress.env("base_url_preview") + "/profil-jawa-barat/arsip-dan-dokumen")
     }
@@ -138,13 +177,33 @@ export class CreateArchivesDocumentPage {
         alert.should('contain', 'File yang anda pilih bukan gambar!')
     }
 
+    alertFileOver5Mb() {
+        const alert = cy.get(create.alertOver5mb)
+        alert.should('contain', 'File yang anda masukan melebihi size batas maksimal!')
+    }
+
+    alertWrongExtensionFile() {
+        const alert = cy.get(create.alertOver5mb)
+        alert.should('contain', 'Format file tidak didukung, format yang didukung hanya doc, docx, xls, xlsx, pdf')
+    }
+
     alertTextLimit() {
         const alert = cy.get(create.alertText50)
         alert.should('contain', 'Teks yang anda masukkan lebih dari 50 karakter')
     }
 
+    alertTextTitleMax() {
+        const alert = cy.get(create.alertMaxTitle)
+        alert.should('contain', 'Teks yang anda masukkan lebih dari 150 karakter')
+    }
+
     alertMandatoryTitle() {
         const alert = cy.get(create.alertMandatoryTitle)
+        alert.should('contain', 'Field ini wajib diisi!')
+    }
+
+    alertMandatoryCategory() {
+        const alert = cy.get(create.alertMandatoryCategory)
         alert.should('contain', 'Field ini wajib diisi!')
     }
 

@@ -17,11 +17,22 @@ export class ListArchivesDocument {
     }
 
     assertNewData() {
-        const dataInfographics = "cypress/fixtures/landing_page/infographics/data_infographics.json"
-        cy.readFile(dataInfographics).then((object) => {
+        const data = "cypress/fixtures/profile_jabar/archives_document/data_archives_document.json"
+        cy.readFile(data).then((object) => {
             const newData = cy.xpath(list.rowNewData)
-            newData.should('contain', object.titleBanner)
-                .and('contain', object.linkRedirect)
+            newData.should('contain', object.titleDocument)
+                .and('contain', object.categoryTopic)
+                .and('contain', object.status)
+        })
+    }
+
+    assertNewDataDraft() {
+        const data = "cypress/fixtures/profile_jabar/archives_document/data_archives_document.json"
+        cy.readFile(data).then((object) => {
+            const newData = cy.xpath(list.rowNewData)
+            newData.should('contain', '-')
+                .and('contain', '-')
+                .and('contain', object.status)
         })
     }
 
@@ -48,7 +59,7 @@ export class ListArchivesDocument {
     }
 
     clickBtnCreateArchiveDocument() {
-        const btn = cy.contains(list.btnAdd)
+        const btn = cy.get(list.btnAdd)
         btn.click()
     }
 
@@ -57,23 +68,26 @@ export class ListArchivesDocument {
         const btnAksi = cy.xpath(list.btnAksi)
         // btnAksi.should("be.visible")
         btnAksi.should("contain", "Aksi")
-        btnAksi.click()
+        btnAksi.click({ force: true })
+        cy.wait(2000)
     }
 
     clickBtnDetail() {
         const btnDetail = cy.xpath(list.btnDetail)
         btnDetail.should("contain", "Detail")
         btnDetail.click({ force: true })
+        cy.wait(2000)
     }
 
     clickBtnUbah() {
         const btnUbah = cy.xpath(list.btnUbah).as('clickBtnUbah')
         btnUbah.should("contain", "Ubah")
         btnUbah.click({ force: true })
+        cy.wait(2000)
     }
 
     clickBtnDelete() {
-        const btnDelete = cy.xpath(list.btnDelete)
+        const btnDelete = cy.get(list.btnDelete)
         btnDelete.should("contain", "Hapus")
         btnDelete.click({ force: true })
     }

@@ -8,8 +8,11 @@ module.exports = {
 
     // Alert Validation
     alertWrongUpload: ".font-lato",
+    alertOver5mb: '[data-cy="archive-document-form__error-message-file"]',
     alertText50: ".jds-form-control-error-message",
+    alertMaxTitle: '[data-cy="archive-document-form__error-message-title"]',
     alertMandatoryTitle: '[data-cy="archive-document-form__error-message-title"]',
+    alertMandatoryCategory: '[data-cy="archive-document-form__error-message-category"]',
     alertMandatoryDesc: '[data-cy="archive-document-form__error-message-description"]',
     alertLinkWrong: ".jds-form-control-error-message",
     alertResolution: ".font-lato",
@@ -22,8 +25,8 @@ module.exports = {
     // Modals Component
     btnNo: '[data-cy="archive-document-form__confirmation-button-dismiss"]',
     btnYesSure: '[data-cy="archive-document-form__confirmation-button-cancel"]',
-    btnYesPublish: '[data-cy="archive-document-form__confirmation-button-save"]',
-    btnYesDraft: '[data-cy="archive-document-form__confirmation-button-publish"]',
+    btnYesPublish: '[data-cy="archive-document-form__confirmation-button-publish"]',
+    btnYesDraft: '[data-cy="archive-document-form__confirmation-button-draft"]',
     modalsTitle: '[data-cy="archive-document-form__confirmation-modal-title"]',
     modalsMessageTitle: '[data-cy="archive-document-form__message-modal-title"]',
     modalsBody: '[data-cy="archive-document-form__confirmation-modal-body"]',

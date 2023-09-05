@@ -129,7 +129,6 @@ qase([2585, 2587, 2590, 2594, 2597, 2598, 2607, 2613, 2618, 2623, 2625, 2627, 26
     })
 )
 
-
 Cypress.Commands.add('createInfographicsBanner', () => {
     // Navigate to Tab Infographic Banner
     listInfographicsPage.clickBtnCreateInfografic()

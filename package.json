@@ -1,5 +1,5 @@
 {
-  "name": "pj-cms-portal",
+  "name": "portal-jabar-cypress",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "cypress": "^12.17.4",
-    "cypress-qase-reporter": "^1.4.2-alpha.2",
+    "cypress-qase-reporter": "^1.4.3",
     "dotenv": "^16.3.1"
   },
   "devDependencies": {

@@ -30,8 +30,26 @@ beforeEach(() => {
 })
 
 describe('Archive and Documents Positive Scenario', () => {
+    qase([4442],
+        it('Create Data Empty Field', () => {
+            // Navigate to infographics tab
+            listPage.navigateToArchiveDocumentTab()
+
+            // Form Add
+            listPage.clickBtnCreateArchiveDocument()
+            createPage.assertCreatePage()
+            createPage.btnSaveDraft()
+            createPage.btnYesSaveDraft()
+            createPage.btnUnderstand()
+
+            // Assertion in List Data Infografis Banner
+            listPage.navigateToArchiveDocumentTab()
+            listPage.assertNewDataDraft()
+        })
+    )
+
     qase([],
-        it('Create Data Archives and Documents', () => {
+        it('Update Data All Field - Draft', () => {
             // Navigate to infographics tab
             listPage.navigateToArchiveDocumentTab()
 
@@ -42,7 +60,13 @@ describe('Archive and Documents Positive Scenario', () => {
             createPage.inputTitleDocument(faker.word.adverb())
             createPage.chooseCategoryTopic(category.cat1)
             createPage.inputDescDocument(faker.lorem.sentences(2))
+            createPage.btnSaveDraft()
+            createPage.btnYesSaveDraft()
+            createPage.btnUnderstand()
 
+            // Assertion in List Data Infografis Banner
+            listPage.navigateToArchiveDocumentTab()
+            listPage.assertNewData()
         })
     )
 })
