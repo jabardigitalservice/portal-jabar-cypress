@@ -7,7 +7,7 @@ export class ListArchivesDocument {
         // Title
         const titleH1 = cy.get(navbar.titleH1).as('titleMenu')
         titleH1.should("contain", "Profil Jawa Barat")
-        cy.url().should("eq", Cypress.env("base_url_preview") + "/profil-jawa-barat/arsip-dan-dokumen")
+        cy.url().should("eq", Cypress.env("base_url") + "/profil-jawa-barat/arsip-dan-dokumen")
 
         // Tab
         const tabMenu = cy.xpath(list.ulTabMenu)

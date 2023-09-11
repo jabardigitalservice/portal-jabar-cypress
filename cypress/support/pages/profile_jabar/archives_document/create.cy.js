@@ -11,7 +11,7 @@ export class CreateArchivesDocumentPage {
     assertCreatePage() {
         const titleH1 = cy.get(navbar.titleH1).as('titleMenu')
         titleH1.should("contain", "Tambah Arsip dan Dokumen")
-        cy.url().should("eq", Cypress.env("base_url_preview") + "/profil-jawa-barat/arsip-dan-dokumen/tambah")
+        cy.url().should("eq", Cypress.env("base_url") + "/profil-jawa-barat/arsip-dan-dokumen/tambah")
     }
 
     // Input Data
@@ -167,7 +167,7 @@ export class CreateArchivesDocumentPage {
     btnYesBack() {
         const btn = cy.get('[data-cy="archive-document-form__confirmation-button-cancel"]')
         btn.click()
-        cy.url().should("eq", Cypress.env("base_url_preview") + "/profil-jawa-barat/arsip-dan-dokumen")
+        cy.url().should("eq", Cypress.env("base_url") + "/profil-jawa-barat/arsip-dan-dokumen")
     }
     // Input Data
 
