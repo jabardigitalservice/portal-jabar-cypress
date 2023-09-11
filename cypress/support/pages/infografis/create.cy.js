@@ -14,13 +14,13 @@ export class CreateInfograficBannerPage {
 
     // Input Data
     uploadImgDesktop(file) {
-        const upload = cy.xpath(create.uploadImgDesktop)
+        const upload = cy.get(create.uploadImgDesktop)
         upload.attachFile(file)
         cy.wait(2000)
     }
 
     uploadImgMobile(file) {
-        const upload = cy.xpath(create.uploadImgMobile)
+        const upload = cy.get(create.uploadImgMobile)
         upload.attachFile(file)
         cy.wait(2000)
     }
@@ -44,7 +44,7 @@ export class CreateInfograficBannerPage {
     }
 
     clickBtnSaveData() {
-        const btn = cy.contains('Simpan Data')
+        const btn = cy.get(create.btnSaveData)
         btn.then(($btn) => {
             if ($btn.is(":disabled")) {
                 btn.should("be.disabled")

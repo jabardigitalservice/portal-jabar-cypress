@@ -20,7 +20,7 @@ module.exports = {
     // Btn Component
     btnSaveDraft: '[data-cy="archive-document-form__button-draft"]',
     btnPublish: '[data-cy="archive-document-form__button-publish"]',
-    btnBack: '[data-cy="archive-document-form__button-cancel"]',
+    btnBack: '[data-cy="archive-document-form__button-back"]',
 
     // Modals Component
     btnNo: '[data-cy="archive-document-form__confirmation-button-dismiss"]',

@@ -94,7 +94,7 @@ describe('Archive and Documents Positive Scenario', () => {
     )
 
     qase([4484, 4486, 4470, 4491, 4493, 4500, 4507],
-        it('Ubah Data', () => {
+        it('Update Data', () => {
             // Navigate to infographics tab
             listPage.navigateToArchiveDocumentTab()
 
@@ -124,6 +124,76 @@ describe('Archive and Documents Positive Scenario', () => {
             updatePage.clickBtnSaveChanges()
             updatePage.btnYesSaveModalsConfirmation()
             updatePage.btnUnderstand()
+        })
+    )
+
+    qase([4472, 4473, 4474, 4492, 4495, 4496, 4499, 4502, 4506],
+        it('Update Data, Negative Scenario', () => {
+            // Navigate to infographics tab
+            listPage.navigateToArchiveDocumentTab()
+
+            // Go to Detail Page
+            listPage.clickBtnAksi()
+            listPage.clickBtnUbah()
+            updatePage.assertUpdateArchiveDocsPage()
+            updatePage.assertUpdateData()
+
+            // Upload File > 5MB
+            updatePage.removeDocs()
+            updatePage.uploadArchiveDocument(dataUpload.pdfFile6Mb)
+            updatePage.alertFileOver5Mb()
+            updatePage.inputTitleDocument(faker.word.adverb())
+            updatePage.chooseCategoryTopic(category.cat1)
+            updatePage.inputDescDocument(faker.lorem.sentences(2))
+            updatePage.clickBtnSaveChanges()
+
+            // Upload File JPG
+            updatePage.uploadArchiveDocument(dataUpload.img4876x1627)
+            updatePage.alertWrongExtensionFile()
+            updatePage.inputTitleDocument(faker.word.adverb())
+            updatePage.chooseCategoryTopic(category.cat2)
+            updatePage.inputDescDocument(faker.lorem.sentences(2))
+            updatePage.clickBtnSaveChanges()
+
+            // Upload File PNG
+            updatePage.uploadArchiveDocument(dataUpload.png4kb)
+            updatePage.alertWrongExtensionFile()
+            updatePage.inputTitleDocument(faker.word.adverb())
+            updatePage.chooseCategoryTopic(category.cat1)
+            updatePage.inputDescDocument(faker.lorem.sentences(2))
+            updatePage.clickBtnSaveChanges()
+
+            // Update Title > 150 Character
+            updatePage.uploadArchiveDocument(dataUpload.pdfFile)
+            updatePage.inputTitleDocument(faker.lorem.words(50))
+            createPage.alertTextTitleMax()
+            updatePage.chooseCategoryTopic(category.cat2)
+            updatePage.inputDescDocument(faker.lorem.sentences(2))
+            updatePage.clickBtnSaveChanges()
+
+            // Update Title Empty
+            updatePage.uploadArchiveDocument(dataUpload.pdfFile)
+            updatePage.inputTitleDocument('test{selectAll}{backspace}')
+            updatePage.alertMandatoryTitle()
+            updatePage.chooseCategoryTopic(category.cat1)
+            updatePage.inputDescDocument(faker.lorem.sentences(2))
+            updatePage.clickBtnSaveChanges()
+
+            // Update Title With Space
+            updatePage.uploadArchiveDocument(dataUpload.pdfFile)
+            updatePage.inputTitleDocument('    ')
+            createPage.alertMandatoryTitle()
+            updatePage.chooseCategoryTopic(category.cat2)
+            updatePage.inputDescDocument(faker.lorem.sentences(2))
+            updatePage.clickBtnSaveChanges()
+
+            // Update Desc Docs With Space
+            updatePage.uploadArchiveDocument(dataUpload.pdfFile)
+            updatePage.inputTitleDocument(faker.word.adverb())
+            updatePage.chooseCategoryTopic(category.cat2)
+            updatePage.inputDescDocument('     ')
+            updatePage.alertMandatoryDesc()
+            updatePage.clickBtnSaveChanges()
         })
     )
 })
