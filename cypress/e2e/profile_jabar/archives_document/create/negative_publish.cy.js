@@ -19,7 +19,7 @@ before('Load Data', () => {
 })
 
 beforeEach(() => {
-    cy.loginPreview()
+    cy.login()
     listPage.navigateToProfilJabarMenu()
     listPage.navigateToArchiveDocumentTab()
     // qase([4349, 4350],
