@@ -14,6 +14,10 @@ module.exports = {
     tableRow: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[1]/section[1]/div[2]/div[1]/table[1]/tbody[1]/tr[1]",
     tableBody: "//tbody",
 
+    // Empty State Search
+    imgNotFound: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[1]/section[1]/div[2]/div[1]/img[1]',
+    messageDataNotFound: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[1]/section[1]/div[2]/div[1]/p[1]',
+
     // cy.Contains()
     btnAdd: '[data-cy="documents__add-button"]',
 }

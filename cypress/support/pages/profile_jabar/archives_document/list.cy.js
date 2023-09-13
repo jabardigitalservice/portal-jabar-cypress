@@ -102,13 +102,13 @@ export class ListArchivesDocument {
     }
 
     assertSearchNotFound() {
-        const img = cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[1]/section[1]/div[2]/div[1]/img[1]")
+        const img = cy.xpath(list.imgNotFound)
         img.should('have.attr', 'src', '/assets/search-not-found.c2800234.svg')
 
         const titleMessage = cy.xpath("//h3[normalize-space()='Data tidak ditemukan !']")
         titleMessage.should('contain', 'Data tidak ditemukan !')
 
-        const message = cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[1]/section[1]/div[2]/div[1]/p[1]")
+        const message = cy.xpath(list.messageDataNotFound)
         message.should('contain', 'Data yang Kamu minta tidak dapat ditemukan. Mohon pastikan Kamu telah memasukkan informasi yang benar.')
     }
 
