@@ -2,6 +2,8 @@ import navbar from "../../../selectors/navbar";
 import sidebar from "../../../selectors/sidebar";
 import list from "../../../selectors/profile_jabar/archives_document/list";
 
+const filename = "cypress/fixtures/profile_jabar/archives_document/data_archives_document.json"
+
 export class ListArchivesDocument {
     assertPage() {
         // Title
@@ -62,6 +64,62 @@ export class ListArchivesDocument {
         const btn = cy.get(list.btnAdd)
         btn.click()
     }
+
+    // Search
+    search(title) {
+        cy.readFile(filename).then((object) => {
+            const search = cy.get(list.search)
+            search.clear()
+            search.type(title).should('have.value', title.substring(0, 50));
+            cy.wait(2000)
+        })
+    }
+
+    deleteKeywordSearch() {
+        const search = cy.get(list.search)
+        search.type("{selectall}{backspace}").should('have.value', '')
+        cy.wait(2000)
+    }
+
+    assertSearchValid() {
+        cy.readFile(filename).then((object) => {
+            const tr = cy.xpath(list.tableRow)
+            tr.should('contain', object.titleDocument)
+                .and('contain', object.categoryTopic)
+                .and('contain', object.status)
+        })
+    }
+
+    assertRowDefault() {
+        const tableBody = cy.xpath(list.tableBody)
+        const search = cy.get(list.search)
+
+        // Assertion
+        tableBody.find('tr').then(rows => {
+            const rowCount = Cypress.$(rows).length
+            expect(rowCount).to.equal(10)
+        })
+    }
+
+    assertSearchNotFound() {
+        const img = cy.xpath(list.imgNotFound)
+        img.should('have.attr', 'src', '/assets/search-not-found.c2800234.svg')
+
+        const titleMessage = cy.xpath("//h3[normalize-space()='Data tidak ditemukan !']")
+        titleMessage.should('contain', 'Data tidak ditemukan !')
+
+        const message = cy.xpath(list.messageDataNotFound)
+        message.should('contain', 'Data yang Kamu minta tidak dapat ditemukan. Mohon pastikan Kamu telah memasukkan informasi yang benar.')
+    }
+
+    clearSearch() {
+        const btnClear = cy.get(list.btnClearSearch)
+        const search = cy.get(list.search)
+        btnClear.click()
+        cy.wait(2000)
+        search.should('have.value', '')
+    }
+    // End Search
 
     // Btn Aksi
     clickBtnAksi() {
