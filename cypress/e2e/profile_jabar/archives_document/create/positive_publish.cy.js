@@ -57,6 +57,75 @@ describe('Archive and Documents Positive Scenario', () => {
         })
     )
 
+    // Search 
+    qase([4521, 4518],
+        it('Search Data & Clear', () => {
+            cy.readFile(dataArchivesDocument).then((object) => {
+                listPage.search(object.titleDocument)
+            })
+            listPage.assertSearchValid()
+            listPage.clearSearch()
+            listPage.assertRowDefault()
+        }),
+
+        qase([4526],
+            it('Remove search keywords (use backspace)', () => {
+                cy.readFile(dataArchivesDocument).then((object) => {
+                    listPage.search(object.titleDocument)
+                    cy.wait(5000)
+                })
+                listPage.assertSearchValid()
+                listPage.deleteKeywordSearch()
+                listPage.assertRowDefault()
+            })
+        ),
+
+        qase([4525],
+            it('Search With 1 Character', () => {
+                listPage.search('a')
+                listPage.assertRowDefault()
+                listPage.clearSearch()
+                listPage.assertRowDefault()
+            })
+        ),
+
+        qase([4519],
+            it('Search With 2 Character', () => {
+                listPage.search('ai')
+                listPage.assertRowDefault()
+                listPage.clearSearch()
+                listPage.assertRowDefault()
+            })
+        ),
+
+        qase([4520],
+            it('Invalid 3 character search', () => {
+                listPage.search('aia')
+                listPage.assertSearchNotFound()
+                listPage.clearSearch()
+                listPage.assertRowDefault()
+            })
+        ),
+
+        qase([4522],
+            it('Invalid > 3 character search', () => {
+                listPage.search('aiaaaa')
+                listPage.assertSearchNotFound()
+                listPage.clearSearch()
+                listPage.assertRowDefault()
+            })
+        ),
+
+        qase([4529],
+            it('Search with keywords space only', () => {
+                listPage.search('   ')
+                listPage.assertRowDefault()
+                listPage.deleteKeywordSearch()
+                listPage.assertRowDefault()
+            })
+        ),
+    )
+
     qase([4440],
         it('Input Description Document = 500 Character', () => {
             // Navigate to infographics tab
