@@ -231,7 +231,7 @@ describe('Agenda Online Positive Scenario', () => {
 
 describe('Preview Page Agenda', () => {
 	qase([261, 247],
-		it.only('S28A3 - Create Agenda Offline - Menampilkan Pratinjau Agenda', () => {
+		it('S28A3 - Create Agenda Offline - Menampilkan Pratinjau Agenda', () => {
 			createAgendaPage.enterTitleAgenda(dataAgenda.titleAgenda)
 			createAgendaPage.chooseTypeAgendaOffline(dataAgenda.valueOffline)
 			createAgendaPage.enterPlaceAgenda(dataAgenda.placeAgenda)
@@ -255,7 +255,7 @@ describe('Preview Page Agenda', () => {
 	)
 
 	qase([359, 247],
-		it.only('S28A3 - Create Agenda Online - Menampilkan Pratinjau Agenda', () => {
+		it('S28A3 - Create Agenda Online - Menampilkan Pratinjau Agenda', () => {
 			createAgendaPage.enterTitleAgenda(dataAgenda.titleAgenda)
 			createAgendaPage.chooseTypeAgendaOnline(dataAgenda.valueOnline)
 			createAgendaPage.enterLinkAgenda(dataAgenda.linkAgenda)
