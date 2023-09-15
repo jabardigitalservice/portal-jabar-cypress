@@ -12,7 +12,7 @@ export class CreateAgendaPage {
 	}
 
 	enterTitleAgenda(title) {
-		const titleAgenda = cy.xpath(create_agenda.titleAgenda)
+		const titleAgenda = cy.get(create_agenda.titleAgenda).find('input')
 		const uuid = () => Cypress._.random(0, 1e4)
 		const id = uuid()
 		const titleText = title + ` ${id}`
@@ -22,8 +22,20 @@ export class CreateAgendaPage {
 		titleAgenda.type(titleText)
 	}
 
+	chooseTypeAgenda(value) {
+		const typeAgendaOffline = cy.get(create_agenda.typeEvent).find('input')
+		const valueAssertion = value
+
+		typeAgendaOffline.check(value).should("be.checked").and("have.value", value)
+
+		cy.readFile(filename).then((object) => {
+			object.typeAgenda = valueAssertion
+			cy.writeFile(filename, object)
+		})
+	}
+
 	chooseTypeAgendaOffline(offlineValue) {
-		const typeAgendaOffline = cy.get(create_agenda.typeEvent)
+		const typeAgendaOffline = cy.get(create_agenda.typeEvent).find('input')
 		const valueAssertion = "offline"
 
 		typeAgendaOffline.check(offlineValue).should("be.checked").and("have.value", offlineValue)
@@ -35,7 +47,7 @@ export class CreateAgendaPage {
 	}
 
 	chooseTypeAgendaOnline(onlineValue) {
-		const typeAgendaOnline = cy.get(create_agenda.typeEvent)
+		const typeAgendaOnline = cy.get(create_agenda.typeEvent).find('input')
 		const valueAssertion = "online"
 
 		typeAgendaOnline.check(onlineValue).should("be.checked").and("have.value", onlineValue)
@@ -47,7 +59,7 @@ export class CreateAgendaPage {
 	}
 
 	enterPlaceAgenda(textPlaceAgenda) {
-		const placeAgenda = cy.xpath(create_agenda.placeAgenda)
+		const placeAgenda = cy.get(create_agenda.placeAgenda).find('textarea')
 
 		placeAgenda.clear()
 		cy.readFile(filename).then((object) => {
@@ -58,7 +70,7 @@ export class CreateAgendaPage {
 	}
 
 	enterLinkAgenda(link) {
-		const linkAgenda = cy.xpath(create_agenda.linkAgenda)
+		const linkAgenda = cy.get(create_agenda.linkAgenda).find('input')
 
 		linkAgenda.clear()
 		cy.readFile(filename).then((object) => {
@@ -73,7 +85,7 @@ export class CreateAgendaPage {
 		const today = cy.get(create_agenda.checkboxToday)
 
 		// Assertion Today
-		const formDate = cy.get(create_agenda.chooseDate)
+		const formDate = cy.get(create_agenda.chooseDate).find('input')
 		formDate.invoke("val").then((text) => {
 			expect(dayjs().format("DD/MM/YYYY")).to.equal(text)
 		})
@@ -81,7 +93,7 @@ export class CreateAgendaPage {
 	}
 
 	enterDateAgenda() {
-		const date = cy.get(create_agenda.chooseDate)
+		const date = cy.get(create_agenda.chooseDate).find('input')
 		date.click()
 		cy.xpath(create_agenda.calendarShow).should("be.visible")
 
@@ -93,7 +105,7 @@ export class CreateAgendaPage {
 	}
 
 	enterDateAgendaBeforeToday() {
-		const date = cy.get(create_agenda.chooseDate)
+		const date = cy.get(create_agenda.chooseDate).find('input')
 		date.click()
 		cy.xpath(create_agenda.calendarShow).should("be.visible")
 
@@ -154,6 +166,32 @@ export class CreateAgendaPage {
 		})
 	}
 
+	categoryAgenda(valueCategory) {
+		// Open Dropdown Option
+		const dropdownCategory = cy.xpath(create_agenda.dropdownCategory)
+		const valueAssertion = "Gubernur"
+		dropdownCategory.click()
+		cy.xpath(create_agenda.dropdown).should("be.visible")
+
+		// Choose Gubernur Category
+		const category = cy.contains(valueCategory)
+		category.click()
+
+		cy.readFile(filename).then((object) => {
+			object.categoryAgenda = valueAssertion
+			cy.writeFile(filename, object)
+		})
+
+		// Assertion Choose Option Gubernur Category
+		dropdownCategory.invoke("val").then((text) => {
+			if (text == "") {
+				expect("").to.equal(text)
+			} else {
+				expect(valueCategory).to.equal(text)
+			}
+		})
+	}
+
 	enterTag() {
 		let tagData = "cypress/fixtures/agenda/agenda_data.json"
 		let formInputTag = cy.get(create_agenda.tag)
@@ -178,7 +216,7 @@ export class CreateAgendaPage {
 	}
 
 	clickBtnCreateAgenda() {
-		const btnCreate = cy.xpath(create_agenda.btnCreateAgenda)
+		const btnCreate = cy.get(create_agenda.btnCreateAgenda)
 
 		btnCreate.then(($btn) => {
 			if ($btn.is(":disabled")) {
@@ -196,7 +234,7 @@ export class CreateAgendaPage {
 	}
 
 	modalsConfirmationSucces() {
-		const messageSuccess = cy.xpath(create_agenda.messageTextSucces)
+		const messageSuccess = cy.get(create_agenda.messageTextSucces).find('h1')
 		messageSuccess.should("contain", " Tambah Agenda Berhasil ")
 
 		const btnMengerti = cy.xpath(create_agenda.btnMengerti)
@@ -207,14 +245,14 @@ export class CreateAgendaPage {
 	}
 
 	alertTimeNotValid() {
-		const alertTime = cy.xpath(create_agenda.alertTimeNotValid)
+		const alertTime = cy.get(create_agenda.alertTimeNotValid)
 
 		alertTime.should("be.visible").and("contain", " Waktu pelaksanaan tidak valid ")
 	}
 
 	// Modals Confirmation Back Button 
 	clickBtnBackAfterFilledData() {
-		const btnBack = cy.xpath(create_agenda.btnBack)
+		const btnBack = cy.get(create_agenda.btnBack)
 
 		// Click Btn Back
 		btnBack.should("contain", " Kembali ")
@@ -234,7 +272,7 @@ export class CreateAgendaPage {
 	}
 
 	clickBtnBack() {
-		const btnBack = cy.xpath(create_agenda.btnBack)
+		const btnBack = cy.get(create_agenda.btnBack)
 		btnBack.should("be.visible")
 		btnBack.contains("Kembali")
 		btnBack.click()
@@ -253,7 +291,7 @@ export class CreateAgendaPage {
 	// Modals Confirmation Back Button
 
 	clickBtnPratinjau() {
-		const btnPratinjau = cy.xpath(create_agenda.btnPratinjau)
+		const btnPratinjau = cy.get(create_agenda.btnPratinjau)
 		btnPratinjau.should("be.visible")
 		btnPratinjau.should("contain", " Pratinjau ")
 		btnPratinjau.click()

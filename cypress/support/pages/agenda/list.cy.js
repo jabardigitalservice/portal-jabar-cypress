@@ -28,7 +28,7 @@ export class ListAgendaPage {
 	}
 
 	clickBtnCreateAgenda() {
-		const btnCreate = cy.contains(list.btnCreateAgenda)
+		const btnCreate = cy.get(list.btnCreateAgenda)
 
 		btnCreate.should("be.visible").and("contain", "Tambah Agenda")
 		btnCreate.click()
@@ -71,9 +71,10 @@ export class ListAgendaPage {
 	searchAgenda(title) {
 		cy.readFile(filename).then((object) => {
 			// const title = object.titleAgenda
-			const searchAgenda = cy.xpath(list.cariAgenda)
+			const searchAgenda = cy.get(list.cariAgenda)
 			searchAgenda.clear()
 			searchAgenda.type(title).should('have.value', title.substring(0, 50));
+			cy.wait(1000)
 		})
 	}
 
@@ -106,7 +107,7 @@ export class ListAgendaPage {
 
 	// Btn Aksi
 	clickBtnAksi() {
-		const btnAksi = cy.xpath(list.btnAksi)
+		const btnAksi = cy.get(list.btnAksi)
 		btnAksi.should("be.visible")
 		btnAksi.should("contain", " Aksi ")
 		btnAksi.click()
