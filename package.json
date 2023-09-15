@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^12.17.4",
+    "cypress": "^13.2.0",
     "cypress-qase-reporter": "^1.4.3",
     "dotenv": "^16.3.1"
   },
