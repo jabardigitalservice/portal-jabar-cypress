@@ -99,7 +99,7 @@ export class ListAgendaPage {
 	searchAgendaUpdate() {
 		cy.readFile(dataUpdate).then((object) => {
 			const title = object.titleAgendaUpdate
-			const searchAgenda = cy.xpath(list.cariAgenda)
+			const searchAgenda = cy.get(list.cariAgenda)
 			searchAgenda.clear()
 			searchAgenda.type(title)
 		})
@@ -107,7 +107,7 @@ export class ListAgendaPage {
 
 	// Btn Aksi
 	clickBtnAksi() {
-		const btnAksi = cy.get(list.btnAksi)
+		const btnAksi = cy.xpath(list.btnAksi)
 		btnAksi.should("be.visible")
 		btnAksi.should("contain", " Aksi ")
 		btnAksi.click()

@@ -22,7 +22,7 @@ export class UpdateAgendaPage {
     }
 
     clickBtnSaveChanges() {
-        const btnSaveChanges = cy.xpath(update.btnSaveChange)
+        const btnSaveChanges = cy.get(update.btnSaveChange)
 
         btnSaveChanges.then(($btn) => {
             if ($btn.is(":disabled")) {
@@ -85,7 +85,7 @@ export class UpdateAgendaPage {
     }
 
     enterTitleAgenda(title) {
-        const titleAgenda = cy.xpath(create_agenda.titleAgenda)
+        const titleAgenda = cy.get(create_agenda.titleAgenda).find('input')
         const uuid = () => Cypress._.random(0, 1e4)
         const id = uuid()
         const titleText = title + ` ${id}`
@@ -96,7 +96,7 @@ export class UpdateAgendaPage {
     }
 
     chooseTypeAgendaOffline(offlineValue) {
-        const typeAgendaOffline = cy.get(create_agenda.typeEvent)
+        const typeAgendaOffline = cy.get(create_agenda.typeEvent).find('input')
         const valueAssertion = "offline"
 
         typeAgendaOffline.check(offlineValue).should("be.checked").and("have.value", offlineValue)
@@ -108,7 +108,7 @@ export class UpdateAgendaPage {
     }
 
     chooseTypeAgendaOnline(onlineValue) {
-        const typeAgendaOnline = cy.get(create_agenda.typeEvent)
+        const typeAgendaOnline = cy.get(create_agenda.typeEvent).find('input')
         const valueAssertion = "online"
 
         typeAgendaOnline.check(onlineValue).should("be.checked").and("have.value", onlineValue)
@@ -120,7 +120,7 @@ export class UpdateAgendaPage {
     }
 
     enterPlaceAgenda(textPlaceAgenda) {
-        const placeAgenda = cy.xpath(create_agenda.placeAgenda)
+        const placeAgenda = cy.get(create_agenda.placeAgenda)
 
         placeAgenda.clear()
         cy.readFile(filename).then((object) => {
@@ -131,7 +131,7 @@ export class UpdateAgendaPage {
     }
 
     enterLinkAgenda(link) {
-        const linkAgenda = cy.xpath(create_agenda.linkAgenda)
+        const linkAgenda = cy.get(create_agenda.linkAgenda).find('input')
 
         linkAgenda.clear()
         cy.readFile(filename).then((object) => {
@@ -297,7 +297,7 @@ export class UpdateAgendaPage {
     }
 
     alertLinkNotValid() {
-        const alertLink = cy.xpath(update.alertLinkNotValid).as('alertLink')
+        const alertLink = cy.get(update.alertLinkNotValid).as('alertLink')
         alertLink.should('be.visible').and('contain', 'Link kegiatan tidak valid')
     }
 }

@@ -2,6 +2,7 @@ import navbar from "../../../selectors/navbar"
 import create_service from "../../../selectors/service/service_list/create";
 import update_service from "../../../selectors/service/service_list/update";
 import create from "../../../selectors/service/service_publication/create";
+import update from "../../../selectors/agenda/update";
 // import { DeleteServicePage } from "./delete.cy";
 import { DeleteServicePage } from "../service_list/delete.cy";
 // import { CreateServiceMasterPage } from "./create.cy"
@@ -433,7 +434,7 @@ export class UpdatePublicationMasterPage {
     }
 
     clickBtnSaveChange() {
-        const btn = cy.contains('Simpan Perubahan')
+        const btn = cy.get(update.btnSaveChange)
         btn.then(($btn) => {
             if ($btn.is(":disabled")) {
                 btn.should("be.disabled").and("contain", "Simpan Perubahan")
