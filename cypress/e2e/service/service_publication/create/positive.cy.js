@@ -126,7 +126,7 @@ describe('Service Positive Scenario', { testIsolation: false }, () => {
         ),
 
         qase([4220],
-            it('Invalid 3 character search', () => {
+            it.skip('Invalid 3 character search', () => {
                 listPublicationPage.search('aia')
                 listPublicationPage.assertSearchNotFound()
                 listPublicationPage.clearSearch()

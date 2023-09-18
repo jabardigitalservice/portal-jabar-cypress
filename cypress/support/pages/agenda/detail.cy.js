@@ -7,7 +7,7 @@ const filename = "cypress/fixtures/agenda/agenda_temp_data.json"
 
 export class DetailAgendaPage {
     assertDetailPage() {
-        const titleDetailPage = cy.xpath(detail.titleDetailPage)
+        const titleDetailPage = cy.get(detail.titleDetailPage)
         titleDetailPage.should('contain', ' Detail Agenda Jawa Barat ')
     }
 
@@ -20,18 +20,18 @@ export class DetailAgendaPage {
             const endTimeData = object.endTime
             const placeData = object.placeAgenda
             const linkData = object.linkAgenda
-            const aboutAgendaSection = cy.xpath(detail.aboutAgendaSection).as('aboutSection').as('tentangAgenda')
+            const aboutAgendaSection = cy.get(detail.aboutAgendaSection).as('aboutSection').as('tentangAgenda')
 
             // About Agenda Section
             aboutAgendaSection.should('contain', titleData)
                 .and('contain', categoryData)
 
             // Date & Time Agenda Section
-            const aboutDateTimeSection = cy.xpath(detail.aboutDateTimeSection).as('DateTimeDetail')
+            const aboutDateTimeSection = cy.get(detail.aboutDateTimeSection).as('DateTimeDetail')
             aboutDateTimeSection.should('contain', startTimeData + ' sampai ' + endTimeData)
 
             // Place Agenda Section
-            const aboutPlaceSection = cy.xpath(detail.aboutPlaceAgenda).as('placeDetail')
+            const aboutPlaceSection = cy.get(detail.aboutPlaceAgenda).as('placeDetail')
             if (object.typeAgenda == 'offline') {
                 aboutPlaceSection.should('contain', typeData)
                 aboutPlaceSection.should('contain', placeData)
@@ -51,7 +51,7 @@ export class DetailAgendaPage {
     }
 
     clickBtnDelete() {
-        const btnDelete = cy.xpath(detail.btnDelete).as('btnDelete')
+        const btnDelete = cy.get(detail.btnDelete).as('btnDelete')
         btnDelete.should("be.visible")
         btnDelete.should("contain", "Hapus")
         btnDelete.click()
@@ -62,20 +62,20 @@ export class DetailAgendaPage {
             const titleData = object.titleAgenda
 
             // Click Btn Delete
-            const btnDelete = cy.xpath(detail.btnDelete)
+            const btnDelete = cy.get(detail.btnDelete)
             btnDelete.should("be.visible")
             btnDelete.should("contain", "Hapus")
             btnDelete.click()
 
             // Assert Modals Delete
-            const modalsDelete = cy.xpath(detail.modalsConfirmationDelete)
+            const modalsDelete = cy.get(detail.modalsConfirmationDelete)
             modalsDelete.should('be.visible')
                 .and('contain', 'Hapus Agenda')
                 .and('contain', 'Apakah Anda yakin akan menghapus agenda ini? ')
-            cy.xpath(detail.modalsTitleAgenda).should('contain', titleData)
+            cy.get(detail.modalsTitleAgenda).should('contain', titleData)
 
             // Do Delete Action
-            const btnYesDelete = cy.xpath(detail.btnYesDeleteModals)
+            const btnYesDelete = cy.get(detail.btnYesDeleteModals)
             btnYesDelete.should("be.visible")
             btnYesDelete.should("contain", "Ya, saya yakin")
             btnYesDelete.click()
@@ -87,20 +87,20 @@ export class DetailAgendaPage {
             const titleData = object.titleAgenda
 
             // Click Btn Delete
-            const btnDelete = cy.xpath(detail.btnDelete)
+            const btnDelete = cy.get(detail.btnDelete)
             btnDelete.should("be.visible")
             btnDelete.should("contain", "Hapus")
             btnDelete.click()
 
             // Assert Modals Delete
-            const modalsDelete = cy.xpath(detail.modalsConfirmationDelete)
+            const modalsDelete = cy.get(detail.modalsConfirmationDelete)
             modalsDelete.should('be.visible')
                 .and('contain', 'Hapus Agenda')
                 .and('contain', 'Apakah Anda yakin akan menghapus agenda ini? ')
-            cy.xpath(detail.modalsTitleAgenda).should('contain', titleData)
+            cy.get(detail.modalsTitleAgenda).should('contain', titleData)
 
             // Cancel Delete Action
-            const btnCancelDelete = cy.xpath(detail.btnCancelDeleteModals)
+            const btnCancelDelete = cy.get(detail.btnCancelDeleteModals)
             btnCancelDelete.should("be.visible")
             btnCancelDelete.should("contain", "Batal")
             btnCancelDelete.click()
