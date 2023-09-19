@@ -5,9 +5,9 @@ module.exports = {
     btnMengerti: "/html[1]/body[1]/div[1]/div[2]/div[1]/section[1]/div[3]/div[1]/button[1]",
 
     // Form Input
-    titleAgenda: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/form[1]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]",
-    placeAgenda: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/form[1]/div[1]/div[3]/div[1]/div[1]/div[1]/textarea[1]",
-    linkAgenda: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/form[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/input[1]',
+    titleAgenda: '[data-cy="agenda-form__agenda-title"]',
+    placeAgenda: '[data-cy="agenda-form__location"]',
+    linkAgenda: '[data-cy="agenda-form__agenda-link"]',
     calendarShow: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/form[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]",
     nextMonth: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/form[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]",
     date28: "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/form[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[3]/div[30]",

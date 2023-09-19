@@ -14,5 +14,5 @@ module.exports = {
     cariAgenda: '[data-cy="search-bar__input"]',
     dropdownBtnAksi: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[1]/div[1]/div[2]/div[1]/table[1]/tbody[1]/tr[1]/td[6]/div[1]/div[2]/div[1]',
     tbodyTableNull: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[1]/div[1]/div[2]/div[1]/table[1]/tbody[1]',
-    btnRemoveSearchValue: '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[1]/div[1]/div[1]/div[1]/div[1]/button[1]'
+    btnRemoveSearchValue: '[data-cy="search-bar__clear-button"]'
 }

@@ -6,7 +6,7 @@ const filename = "cypress/fixtures/agenda/agenda_temp_data.json"
 
 export class DeleteAgendaPage {
     modalsConfirmationDelete() {
-        const modalsConfirmation = cy.xpath(deletes.modalsConfirmationDelete)
+        const modalsConfirmation = cy.get(deletes.modalsConfirmationDelete)
 
         cy.readFile(filename).then((object) => {
             const titleData = object.titleAgenda
@@ -16,10 +16,11 @@ export class DeleteAgendaPage {
                 .and('contain', 'Apakah Anda yakin akan menghapus agenda ini?')
                 .and('contain', titleData)
         })
+        cy.wait(2000)
     }
 
     clickBtnYesDelete() {
-        const btnYesDelete = cy.xpath(deletes.btnYesDelete)
+        const btnYesDelete = cy.get(deletes.btnYesDelete)
         btnYesDelete.should("be.visible")
         btnYesDelete.should("contain", "Ya, saya yakin")
         btnYesDelete.click()
@@ -28,7 +29,7 @@ export class DeleteAgendaPage {
     }
 
     clickBtnCancelDelete() {
-        const btnCancelDelete = cy.xpath(deletes.btnCancelDelete)
+        const btnCancelDelete = cy.get(deletes.btnCancelDelete)
         btnCancelDelete.should("be.visible")
         btnCancelDelete.should("contain", "Batal")
         btnCancelDelete.click()

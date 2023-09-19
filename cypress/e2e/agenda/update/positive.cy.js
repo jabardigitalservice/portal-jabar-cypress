@@ -49,7 +49,7 @@ beforeEach(() => {
     createAgendaPage.enterDateAgenda()
     createAgendaPage.startTime(dataAgenda.startTime)
     createAgendaPage.endTime(dataAgenda.endTime)
-    createAgendaPage.categoryAgendaGubernur()
+    createAgendaPage.categoryAgenda(dataAgenda.cat1)
     createAgendaPage.enterTag()
     createAgendaPage.clickBtnPratinjau()
     createAgendaPage.modalsPratinjau()
