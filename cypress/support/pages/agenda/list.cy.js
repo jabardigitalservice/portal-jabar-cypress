@@ -123,7 +123,7 @@ export class ListAgendaPage {
 	}
 
 	clickBtnAksiLihatDetail() {
-		const btnDetail = cy.get(list.btnLihatDetail).as('btnLihatDetail')
+		const btnDetail = cy.xpath(list.btnLihatDetail).as('btnLihatDetail')
 		btnDetail.should("contain", " Lihat Detail ")
 		btnDetail.click({ force: true })
 	}
