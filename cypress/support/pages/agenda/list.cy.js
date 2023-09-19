@@ -74,23 +74,23 @@ export class ListAgendaPage {
 			const searchAgenda = cy.get(list.cariAgenda)
 			searchAgenda.clear()
 			searchAgenda.type(title).should('have.value', title.substring(0, 50));
-			cy.wait(1000)
+			cy.wait(3000)
 		})
 	}
 
 	assertCharacterSearch() {
 		cy.readFile(filename).then((object) => {
 			const title = object.titleAgenda
-			const searchAgenda = cy.xpath(list.cariAgenda).as('characterValue')
+			const searchAgenda = cy.get(list.cariAgenda).as('characterValue')
 			searchAgenda.should('have.value', title.substring(0, 50));
 		})
 	}
 
 	clickBtnRemoveValueSearch() {
-		const btnClear = cy.xpath(list.btnRemoveSearchValue)
+		const btnClear = cy.get(list.btnRemoveSearchValue)
 		btnClear.click()
 
-		const searchValue = cy.xpath(list.cariAgenda)
+		const searchValue = cy.get(list.cariAgenda)
 		searchValue.invoke('val').then((text) => {
 			expect("").to.equal("");
 		})
@@ -123,7 +123,7 @@ export class ListAgendaPage {
 	}
 
 	clickBtnAksiLihatDetail() {
-		const btnDetail = cy.xpath(list.btnLihatDetail).as('btnLihatDetail')
+		const btnDetail = cy.get(list.btnLihatDetail).as('btnLihatDetail')
 		btnDetail.should("contain", " Lihat Detail ")
 		btnDetail.click({ force: true })
 	}
@@ -140,6 +140,7 @@ export class ListAgendaPage {
 		const btnDelete = cy.xpath(list.btnDelete)
 		btnDelete.should("contain", "Hapus")
 		btnDelete.click({ force: true })
+		cy.wait(2000)
 	}
 	// End Btn Aksi
 

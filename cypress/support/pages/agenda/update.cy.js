@@ -246,7 +246,7 @@ export class UpdateAgendaPage {
             const linkData = object.linkAgenda
 
             // Verify Title
-            const titleAgenda = cy.xpath(update.titleAgenda).as('valueTitle')
+            const titleAgenda = cy.get(update.titleAgenda).find('input').as('valueTitle')
             titleAgenda.invoke('val').then((text) => {
                 expect(titleData).to.equal(text)
             })
@@ -254,13 +254,13 @@ export class UpdateAgendaPage {
             // Verify Type Agenda
             if (typeData == 'offline') {
                 // Verify Place
-                const placeAgenda = cy.xpath(update.placeAgenda).as('valuePlace')
+                const placeAgenda = cy.get(update.placeAgenda).find('input').as('valuePlace')
                 placeAgenda.invoke('val').then((text) => {
                     expect(placeData).to.equal(text)
                 })
             } else {
                 // Verify Link
-                const linkAgenda = cy.xpath(update.linkAgenda).as('valueLink')
+                const linkAgenda = cy.get(update.linkAgenda).find('input').as('valueLink')
                 linkAgenda.invoke('val').then((text) => {
                     expect(linkData).to.equal(text)
                 })

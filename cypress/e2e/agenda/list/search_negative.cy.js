@@ -72,7 +72,7 @@ describe('Search Agenda | Negative Scenario', () => {
     )
 
     qase(639,
-        it.only('Memasukan keyword karakter asing', () => {
+        it('Memasukan keyword karakter asing', () => {
             agendaPage.searchAgenda(dataAgenda.searchWrongCharacter)
             agendaPage.assertNullDataTable()
         })
