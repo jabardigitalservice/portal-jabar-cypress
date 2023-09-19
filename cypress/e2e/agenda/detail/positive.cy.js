@@ -43,7 +43,7 @@ beforeEach(() => {
 
 describe('Detail Agenda Scenario', () => {
     qase(255,
-        it.only('S27A2 - Detail Online - View Detail Agenda', () => {
+        it('S27A2 - Detail Online - View Detail Agenda', () => {
             createAgendaPage.enterTitleAgenda(dataAgenda.titleAgenda)
             createAgendaPage.chooseTypeAgendaOnline(dataAgenda.valueOnline)
             createAgendaPage.enterLinkAgenda(dataAgenda.linkAgenda)
