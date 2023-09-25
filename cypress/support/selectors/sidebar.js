@@ -4,5 +4,6 @@ module.exports = {
     landingPageMenu: '[title="Landing Page"]',
     agendaMenu: '[title="Agenda"]',
     layananMenu: '[title="Layanan"]',
-    profilJawaBaratMenu: '[title="Profil Jawa Barat"]'
+    profilJawaBaratMenu: '[title="Profil Jawa Barat"]',
+    newsMenu: '[title="Berita dan Artikel"]'
 }

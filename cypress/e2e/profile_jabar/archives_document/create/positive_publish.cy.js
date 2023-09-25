@@ -25,6 +25,7 @@ before('Load Data', () => {
 
 beforeEach(() => {
     cy.login()
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
     listPage.navigateToProfilJabarMenu()
     listPage.navigateToArchiveDocumentTab()
     // qase([4349, 4350],
