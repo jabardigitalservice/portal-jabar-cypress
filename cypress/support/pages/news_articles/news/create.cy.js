@@ -28,7 +28,6 @@ export class CreateNewsPage {
             .its('0.contentDocument.body')
             .should('be.visible')
             .then(cy.wrap)
-        // .type('test tiny uzi')
 
         cy.readFile(data).then((object) => {
             object.newsContent = text

@@ -22,15 +22,13 @@ before('Load Data', () => {
     })
 })
 
-describe('Scenario Publish News Positive', { testIsolation: false }, () => {
-    qase([],
-        it('Visit URL CMS & News Menu', () => {
-            cy.login()
-            listPage.navigateToNewsArchiveMenu()
-            listPage.navigateToNewsTab()
-        })
-    )
+beforeEach('', () => {
+    cy.login()
+    listPage.navigateToNewsArchiveMenu()
+    listPage.navigateToNewsTab()
+})
 
+describe('Scenario Publish News Positive', { testIsolation: false }, () => {
     qase([],
         it('Publish News', () => {
             listPage.clickBtnCreateNews()
