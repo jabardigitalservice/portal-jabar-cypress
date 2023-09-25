@@ -44,6 +44,6 @@ export class ListNewsPage {
     clickBtnCreateNews() {
         const btn = cy.contains(list.btnAdd)
         btn.click()
-        cy.wait(3000)
+        cy.wait(5000)
     }
 }
