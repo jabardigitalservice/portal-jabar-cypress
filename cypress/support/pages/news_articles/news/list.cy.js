@@ -2,6 +2,8 @@ import navbar from "../../../selectors/navbar"
 import sidebar from "../../../selectors/sidebar"
 import list from "../../../selectors/news_articles/news/list"
 
+const data = "cypress/fixtures/news_articles/news/data_news.json"
+
 export class ListNewsPage {
     assertPage() {
         // Title
@@ -45,5 +47,18 @@ export class ListNewsPage {
         const btn = cy.contains(list.btnAdd)
         btn.click()
         cy.wait(5000)
+    }
+
+    assertNewData() {
+        const data = "cypress/fixtures/news_articles/news/data_news.json"
+
+        cy.readFile(data).then((object) => {
+            const newData = cy.xpath(list.tr_rowNewData)
+            const lowerCategoryTopic = object.categoryTopic.toLowerCase()
+
+            newData.should('contain', object.titleNews)
+                .and('contain', lowerCategoryTopic)
+                .and('contain', object.status)
+        })
     }
 }
