@@ -21,15 +21,19 @@ before('Load Data', () => {
     })
 })
 
+beforeEach('', () => {
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+})
+
 describe('Infografis Banner', { testIsolation: false }, () => {
-    it.skip('Login & Navigate to infografis banner', () => {
+    it('Login & Navigate to infografis banner', () => {
         cy.login()
         listPage.navigateToLandingPageMenu()
         listPage.navigateToInfografisBannerTab()
     });
 
     qase([3439, 3440, 3460, 3482, 3542],
-        it.skip('Upload File PDF extension', () => {
+        it('Upload File PDF extension', () => {
             // Navigate to Tab Infographic Banner
             listPage.clickBtnCreateInfografic()
             createPage.assertCreateInfograficPage()
@@ -47,7 +51,7 @@ describe('Infografis Banner', { testIsolation: false }, () => {
     )
 
     qase([3439, 3440, 3462, 3482, 3484],
-        it.skip('Upload File Docx extension', () => {
+        it('Upload File Docx extension', () => {
             // Navigate to Tab Infographic Banner
             listPage.navigateToInfografisBannerTab()
             listPage.clickBtnCreateInfografic()
@@ -66,7 +70,7 @@ describe('Infografis Banner', { testIsolation: false }, () => {
     )
 
     qase([3454, 3456],
-        it.skip('Upload File 6MB', () => {
+        it('Upload File 6MB', () => {
             // Navigate to Tab Infographic Banner
             listPage.navigateToInfografisBannerTab()
             listPage.clickBtnCreateInfografic()
@@ -85,7 +89,7 @@ describe('Infografis Banner', { testIsolation: false }, () => {
     )
 
     qase([3487],
-        it.skip('Type Title Infographics Banner > 50 Character', () => {
+        it('Type Title Infographics Banner > 50 Character', () => {
             // Navigate to Tab Infographic Banner
             listPage.navigateToInfografisBannerTab()
             listPage.clickBtnCreateInfografic()
@@ -103,7 +107,7 @@ describe('Infografis Banner', { testIsolation: false }, () => {
     )
 
     qase([3488, 3508],
-        it.skip('Empty Title and link Redirect', () => {
+        it('Empty Title and link Redirect', () => {
             // Navigate to Tab Infographic Banner
             listPage.navigateToInfografisBannerTab()
             listPage.clickBtnCreateInfografic()
@@ -118,7 +122,7 @@ describe('Infografis Banner', { testIsolation: false }, () => {
     )
 
     qase([3492, 3509],
-        it.skip('Input Title and link with space value', () => {
+        it('Input Title and link with space value', () => {
             // Navigate to Tab Infographic Banner
             listPage.navigateToInfografisBannerTab()
             listPage.clickBtnCreateInfografic()
@@ -137,7 +141,7 @@ describe('Infografis Banner', { testIsolation: false }, () => {
     )
 
     qase([3512],
-        it.skip('Input Link Redirect Without Format Link', () => {
+        it('Input Link Redirect Without Format Link', () => {
             // Navigate to Tab Infographic Banner
             listPage.navigateToInfografisBannerTab()
             listPage.clickBtnCreateInfografic()
@@ -155,7 +159,7 @@ describe('Infografis Banner', { testIsolation: false }, () => {
     )
 
     qase([3513],
-        it.skip('Input Link Redirect With number input', () => {
+        it('Input Link Redirect With number input', () => {
             // Navigate to Tab Infographic Banner
             listPage.navigateToInfografisBannerTab()
             listPage.clickBtnCreateInfografic()

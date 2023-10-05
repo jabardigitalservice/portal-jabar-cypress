@@ -21,6 +21,10 @@ before('Load Data', () => {
     })
 })
 
+beforeEach('', () => {
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+})
+
 describe('Update Infographics Banner Negative Scenario', { testIsolation: false }, () => {
     it('Login & Navigate to infografis banner', () => {
         cy.login()
@@ -34,37 +38,8 @@ describe('Update Infographics Banner Negative Scenario', { testIsolation: false 
         })
     )
 
-    // qase([3554, 3555,],
-    //     it('Update Data', () => {
-    //         // Navigate to infographics tab
-    //         listPage.navigateToInfografisBannerTab()
-
-    //         // Go to update page
-    //         listPage.clickBtnAksi()
-    //         listPage.clickBtnUbah()
-    //         updatePage.assertUpdateInfographicsPage()
-
-    //         // input data
-    //         updatePage.removeImgDesktop()
-    //         updatePage.uploadImgDesktop(dataImage.img4876x1627)
-    //         updatePage.removeImgMobile()
-    //         updatePage.uploadImgMobile(dataImage.img4876x1627)
-    //         updatePage.inputTitleBanner(faker.company.companyName())
-    //         createPage.activeToogleLink()
-    //         updatePage.inputLinkRedirect(faker.image.imageUrl())
-
-    //         updatePage.clickBtnSaveData()
-    //         updatePage.btnYesSaveModalsConfirmation()
-    //         updatePage.btnUnderstand()
-
-    //         // Assertion in List Data Infografis Banner
-    //         listPage.navigateToInfografisBannerTab()
-    //         listPage.assertNewData()
-    //     })
-    // )
-
     qase([3565, 3570],
-        it.skip('Ubah image banner desktop dengan ukuran file >2MB', () => {
+        it('Ubah image banner desktop dengan ukuran file >2MB', () => {
             // Navigate to infographics tab
             listPage.navigateToInfografisBannerTab()
 
@@ -89,7 +64,7 @@ describe('Update Infographics Banner Negative Scenario', { testIsolation: false 
     )
 
     qase([3567, 3572],
-        it.skip('Ubah image menggunakan file PDF', () => {
+        it('Ubah image menggunakan file PDF', () => {
             // Navigate to infographics tab
             listPage.navigateToInfografisBannerTab()
 
@@ -114,7 +89,7 @@ describe('Update Infographics Banner Negative Scenario', { testIsolation: false 
     )
 
     qase([3569, 3574],
-        it.skip('Ubah image banner desktop menggunakan file DOCX', () => {
+        it('Ubah image banner desktop menggunakan file DOCX', () => {
             // Navigate to infographics tab
             listPage.navigateToInfografisBannerTab()
 
@@ -139,7 +114,7 @@ describe('Update Infographics Banner Negative Scenario', { testIsolation: false 
     )
 
     qase([3575],
-        it.skip('Ubah judul popup banner dengan > 50 karakter', () => {
+        it('Ubah judul popup banner dengan > 50 karakter', () => {
             // Navigate to infographics tab
             listPage.navigateToInfografisBannerTab()
 
@@ -163,7 +138,7 @@ describe('Update Infographics Banner Negative Scenario', { testIsolation: false 
     )
 
     qase([3576],
-        it.skip('Ubah judul popup dengan mengosongkan field', () => {
+        it('Ubah judul popup dengan mengosongkan field', () => {
             // Navigate to infographics tab
             listPage.navigateToInfografisBannerTab()
 
@@ -187,7 +162,7 @@ describe('Update Infographics Banner Negative Scenario', { testIsolation: false 
     )
 
     qase([3586],
-        it.skip('Ubah link redirect menggunakan spasi saja', () => {
+        it('Ubah link redirect menggunakan spasi saja', () => {
             // Navigate to infographics tab
             listPage.navigateToInfografisBannerTab()
 
@@ -211,7 +186,7 @@ describe('Update Infographics Banner Negative Scenario', { testIsolation: false 
     )
 
     qase([3588],
-        it.skip('Ubah link redirect tidak menggunakan format', () => {
+        it('Ubah link redirect tidak menggunakan format', () => {
             // Navigate to infographics tab
             listPage.navigateToInfografisBannerTab()
 
@@ -235,7 +210,7 @@ describe('Update Infographics Banner Negative Scenario', { testIsolation: false 
     )
 
     qase([3589],
-        it.skip('Ubah link redirect dengan angka saja', () => {
+        it('Ubah link redirect dengan angka saja', () => {
             // Navigate to infographics tab
             listPage.navigateToInfografisBannerTab()
 
@@ -255,17 +230,6 @@ describe('Update Infographics Banner Negative Scenario', { testIsolation: false 
 
             updatePage.clickBtnSaveData()
             createPage.clickBtnBack()
-        })
-    )
-
-    qase([3724],
-        it.skip('Delete Data Infographics', () => {
-            listPage.navigateToInfografisBannerTab()
-            listPage.clickBtnAksi()
-            listPage.clickBtnDelete()
-            deletePage.modalsConfirmationDelete()
-            deletePage.clickBtnYesDelete()
-            deletePage.clickBtnUnderstand()
         })
     )
 })

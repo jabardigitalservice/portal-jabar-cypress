@@ -25,6 +25,7 @@ before('Load Data', () => {
 
 beforeEach(() => {
     cy.login()
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
     listPage.navigateToProfilJabarMenu()
     listPage.navigateToArchiveDocumentTab()
     // qase([4349, 4350],
@@ -45,7 +46,7 @@ describe('Archive and Documents Positive Scenario', () => {
             createPage.assertCreatePage()
             createPage.uploadArchiveDocument(dataUpload.pdfFile)
             createPage.inputTitleDocument(faker.word.adverb())
-            createPage.chooseCategoryTopic(category.cat1)
+            createPage.chooseCategoryTopic(category.cat5)
             createPage.inputDescDocument(faker.lorem.sentences(2))
             createPage.clickBtnPublish()
             createPage.btnYesPublish()

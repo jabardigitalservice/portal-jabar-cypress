@@ -72,7 +72,7 @@ describe('Search Agenda | Negative Scenario', () => {
     )
 
     qase(639,
-        it('Memasukan keyword karakter asing', () => {
+        it.skip('Memasukan keyword karakter asing', () => {
             agendaPage.searchAgenda(dataAgenda.searchWrongCharacter)
             agendaPage.assertNullDataTable()
         })

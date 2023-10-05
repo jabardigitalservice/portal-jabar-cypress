@@ -41,6 +41,7 @@ export class ListInfografisBannerPage {
         tab.click().should('contain', 'Infografis Banner')
         cy.wait(1000)
         text.should('have.class', 'text-green-700')
+        cy.url().should("eq", Cypress.env("base_url") + "/landing-page/infographics-banner")
     }
 
     clickBtnCreateInfografic() {

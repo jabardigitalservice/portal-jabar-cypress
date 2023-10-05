@@ -41,6 +41,4 @@ export class DeletePublicationPage {
         btn.should("contain", "Saya Mengerti")
         btn.click()
     }
-
-
 }

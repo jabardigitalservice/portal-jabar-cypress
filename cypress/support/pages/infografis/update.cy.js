@@ -12,8 +12,8 @@ export class UpdateInfographicsBannerPage {
     }
 
     removeImgDesktop() {
-        const btn = cy.get(update.removeImgDesktop)
-        btn.click()
+        const btn = cy.xpath(update.removeImgDesktop)
+        btn.click({ force: true })
         cy.wait(2000)
     }
 
@@ -22,7 +22,7 @@ export class UpdateInfographicsBannerPage {
     }
 
     removeImgMobile() {
-        const btn = cy.get(update.removeImgMobile)
+        const btn = cy.xpath(update.removeImgMobile)
         btn.click()
         cy.wait(2000)
     }
