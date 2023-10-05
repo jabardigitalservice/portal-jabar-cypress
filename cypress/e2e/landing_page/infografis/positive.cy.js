@@ -20,21 +20,25 @@ before('Load Data', () => {
     })
 })
 
+beforeEach('', () => {
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+})
+
 describe('Infografis Banner', { testIsolation: false }, () => {
-    it.skip('Login & Navigate to infografis banner', () => {
+    it('Login & Navigate to infografis banner', () => {
         cy.login()
         listPage.navigateToLandingPageMenu()
         listPage.navigateToInfografisBannerTab()
     });
 
     qase([3439, 3440, 3441, 2443, 3457, 3458, 3474, 3479, 3480, 3485, 3506, 3538, 3542, 3547],
-        it.skip('Add Banner Infografis', () => {
+        it('Add Banner Infografis', () => {
             cy.createInfographicsBanner()
         })
     )
 
     qase([3697, 3704, 3709, 3716, 3700],
-        it.skip('Assertion Data Create in Detail', () => {
+        it('Assertion Data Create in Detail', () => {
             // Navigate to infographics tab
             listPage.navigateToInfografisBannerTab()
 
@@ -48,7 +52,7 @@ describe('Infografis Banner', { testIsolation: false }, () => {
     )
 
     qase([3610, 3553, 3554, 3555, 3556,],
-        it.skip('Update Data', () => {
+        it('Update Data', () => {
             // Navigate to infographics tab
             listPage.navigateToInfografisBannerTab()
 
@@ -56,6 +60,7 @@ describe('Infografis Banner', { testIsolation: false }, () => {
             listPage.clickBtnAksi()
             listPage.clickBtnUbah()
             updatePage.assertUpdateInfographicsPage()
+            cy.wait(3000)
 
             // input data
             updatePage.removeImgDesktop()
@@ -88,9 +93,8 @@ describe('Infografis Banner', { testIsolation: false }, () => {
             detailPage.clickBtnBack()
         })
     )
-
     qase([3724],
-        it.skip('Delete Data Infographics', () => {
+        it('Delete Data Infographics', () => {
             listPage.navigateToInfografisBannerTab()
             listPage.clickBtnAksi()
             listPage.clickBtnDelete()

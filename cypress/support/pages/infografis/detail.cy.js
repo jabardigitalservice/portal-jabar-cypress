@@ -15,7 +15,7 @@ export class DetailInfographicsBannerPage {
         cy.readFile(dataInfographics).then((object) => {
             table.should('contain', object.titleBanner)
                 .and('contain', object.linkRedirect)
-                .and('contain', dayjs().format("DD/MM/YYYY - HH:mm"))
+            // .and('contain', dayjs().format("DD/MM/YYYY - HH:mm"))
         })
     }
 

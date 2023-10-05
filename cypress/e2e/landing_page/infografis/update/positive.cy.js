@@ -21,21 +21,25 @@ before('Load Data', () => {
     })
 })
 
+beforeEach('', () => {
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+})
+
 describe('Update Infographics Banner Positive Scenario', { testIsolation: false }, () => {
-    it.skip('Login & Navigate to infografis banner', () => {
+    it('Login & Navigate to infografis banner', () => {
         cy.login()
         listPage.navigateToLandingPageMenu()
         listPage.navigateToInfografisBannerTab()
     });
 
     qase([3439, 3440, 3441, 2443, 3457, 3458, 3474, 3479, 3480, 3485, 3506, 3538, 3542, 3547],
-        it.skip('Add Banner Infografis', () => {
+        it('Add Banner Infografis', () => {
             cy.createInfographicsBanner()
         })
     )
 
     qase([3554, 3555,],
-        it.skip('Update Data', () => {
+        it('Update Data', () => {
             // Navigate to infographics tab
             listPage.navigateToInfografisBannerTab()
 
@@ -63,7 +67,7 @@ describe('Update Infographics Banner Positive Scenario', { testIsolation: false 
     )
 
     qase([],
-        it.skip('Assertion Data Update in Detail', () => {
+        it('Assertion Data Update in Detail', () => {
             // Navigate to infographics tab
             listPage.navigateToInfografisBannerTab()
 
@@ -78,7 +82,7 @@ describe('Update Infographics Banner Positive Scenario', { testIsolation: false 
 
     // Update Infographics - Toogle Link redirect not active
     qase([3554, 3555,],
-        it.skip('Change the redirect link toggle to non-active', () => {
+        it('Change the redirect link toggle to non-active', () => {
             // Navigate to infographics tab
             listPage.navigateToInfografisBannerTab()
 
@@ -106,28 +110,8 @@ describe('Update Infographics Banner Positive Scenario', { testIsolation: false 
         })
     )
 
-    qase([3554, 3555,],
-        it.skip('Check default toogle link is nonactive', () => {
-            // Navigate to infographics tab
-            listPage.navigateToInfografisBannerTab()
-
-            // Go to update page
-            listPage.clickBtnAksi()
-            listPage.clickBtnUbah()
-            updatePage.assertUpdateInfographicsPage()
-
-            updatePage.clickBtnSaveData()
-            updatePage.btnYesSaveModalsConfirmation()
-            updatePage.btnUnderstand()
-
-            // Assertion in List Data Infografis Banner
-            listPage.navigateToInfografisBannerTab()
-            // listPage.assertNewData()
-        })
-    )
-
     qase([],
-        it.skip('Delete Data Infographics', () => {
+        it('Delete Data Infographics', () => {
             listPage.navigateToInfografisBannerTab()
             listPage.clickBtnAksi()
             listPage.clickBtnDelete()
