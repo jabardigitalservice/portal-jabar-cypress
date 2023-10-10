@@ -132,6 +132,39 @@ export class DetailPublicationPage {
         })
     }
 
+    assertionAdditionalInformationUpdate() {
+        const newsKeyword = "cypress/fixtures/agenda/agenda_data.json"
+
+        cy.readFile(newsKeyword).then((object) => {
+            const newsInformationTable = cy.xpath('/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[2]/div[1]/div[1]')
+            const dataKeywords = [
+                {
+                    keywords: object.tagAgendaUpdate1,
+                },
+                {
+                    keywords: object.tagAgendaUpdate2,
+                },
+                {
+                    keywords: object.tagAgendaUpdate3,
+                },
+            ]
+
+            dataKeywords.forEach(({ keywords }) => {
+                newsInformationTable.should('contain', keywords)
+            })
+        })
+
+        cy.readFile(publicationData).then((objectPublication) => {
+            const faqTable = cy.xpath('/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[2]/div[1]/div[2]')
+            faqTable.should('contain', objectPublication.question1)
+                .and('contain', objectPublication.answer1)
+                .and('contain', objectPublication.question2)
+                .and('contain', objectPublication.answer2)
+                .and('contain', objectPublication.question3)
+                .and('contain', objectPublication.answer3)
+        })
+    }
+
     clickBtnBack() {
         const btn = cy.contains('Kembali')
         btn.click()
