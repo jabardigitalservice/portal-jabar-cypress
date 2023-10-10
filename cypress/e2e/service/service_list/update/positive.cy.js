@@ -114,6 +114,12 @@ describe('Update Scenario', () => {
             deleteServicePage.modalsConfirmationDelete()
             deleteServicePage.clickBtnYesDelete()
             deleteServicePage.clickBtnUnderstand()
+
+            // Assertion Success Delete, not found in list data
+            cy.readFile(filename).then((object) => {
+                listServicePage.search(object.namaLayanan)
+            })
+            listServicePage.assertSearchNotFound()
         })
     )
 })
