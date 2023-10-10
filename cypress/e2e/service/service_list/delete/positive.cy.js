@@ -28,16 +28,20 @@ beforeEach(() => {
 describe('Service Positive Scenario', { testIsolation: true }, () => {
     qase([2882],
         it('Delete Data', () => {
+            cy.createDataMasterService()
+
             // Delete
             listServicePage.clickBtnAksi()
             listServicePage.clickBtnDelete()
             deleteServicePage.modalsConfirmationDelete()
             deleteServicePage.clickBtnYesDelete()
             deleteServicePage.clickBtnUnderstand()
-            // cy.readFile(filename).then((object) => {
-            //     agendaPage.searchAgenda(object.namaLayanan)
-            // })
-            // agendaPage.assertNullDataTable()
+
+            // Assertion Success Delete, not found in list data
+            cy.readFile(filename).then((object) => {
+                listServicePage.search(object.namaLayanan)
+            })
+            listServicePage.assertSearchNotFound()
         })
     )
 })

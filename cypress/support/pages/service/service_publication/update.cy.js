@@ -1,6 +1,7 @@
 import navbar from "../../../selectors/navbar"
 import create_service from "../../../selectors/service/service_list/create";
 import update_service from "../../../selectors/service/service_list/update";
+import update_publication from "../../../selectors/service/service_publication/update";
 import create from "../../../selectors/service/service_publication/create";
 import update from "../../../selectors/agenda/update";
 // import { DeleteServicePage } from "./delete.cy";
@@ -22,6 +23,7 @@ export class UpdatePublicationMasterPage {
         const titleH1 = cy.get(navbar.titleH1)
         titleH1.should("contain", "Ubah Data Layanan Publik")
         // cy.url().should("eq", Cypress.env("base_url") + "/layanan/master-data/")
+        cy.wait(5000)
     }
 
     assertServiceValueForm1() {
@@ -91,6 +93,7 @@ export class UpdatePublicationMasterPage {
 
     removeImgLogo() {
         cy.get("button:nth-of-type(2) svg").click();
+        cy.wait(5000)
     }
 
     uploadLogoService(file) {
@@ -434,13 +437,12 @@ export class UpdatePublicationMasterPage {
     }
 
     clickBtnSaveChange() {
-        const btn = cy.get(update.btnSaveChange)
+        const btn = cy.xpath(update_publication.btnSaveChange)
         btn.then(($btn) => {
             if ($btn.is(":disabled")) {
                 btn.should("be.disabled").and("contain", "Simpan Perubahan")
             } else {
-                btn.should("be.visible")
-                btn.contains("Simpan Perubahan")
+                btn.should("be.visible").and("contain", "Simpan Perubahan")
                 btn.click()
                 cy.wait(1000)
                 // Assertion Modals Confirmation
@@ -477,7 +479,7 @@ export class UpdatePublicationMasterPage {
         const respons = cy.get('.animate-slide-up > .overflow-y-auto > .w-full > .font-roboto')
         respons.should('contain', 'Berhasil!')
         const modals = cy.get('.animate-slide-up > .overflow-y-auto')
-        modals.should('contain', 'Layanan yang Anda buat berhasil ditambahkan.')
+        modals.should('contain', 'Publikasi yang Anda buat berhasil diterbitkan.')
     }
 
     btnUnderstand() {

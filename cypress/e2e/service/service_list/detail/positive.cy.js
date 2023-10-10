@@ -31,12 +31,14 @@ beforeEach(() => {
     // Go to Service Page
     listServicePage.navigateToServicePage()
     listServicePage.assertServicePage()
-
 })
 
 describe('Detail Positive Scenario', () => {
     qase([4201, 4205, 4213, 4202],
         it('Search Data & Clear', () => {
+            // Create New Master Data
+            cy.createDataMasterService()
+
             cy.readFile(filename).then((object) => {
                 listServicePage.search(object.namaLayanan)
             })

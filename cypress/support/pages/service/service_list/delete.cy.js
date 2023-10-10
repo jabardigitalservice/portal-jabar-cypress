@@ -1,4 +1,4 @@
-import deletes from "../../../selectors/agenda/deletes";
+import deletes from "../../../selectors/service/service_list/deletes";
 import { ListServicePage } from "./list.cy";
 
 const listPage = new ListServicePage()
@@ -6,7 +6,7 @@ const filename = "cypress/fixtures/service/wizard1_temp_data.json"
 
 export class DeleteServicePage {
     modalsConfirmationDelete() {
-        const modalsConfirmation = cy.xpath(deletes.modalsConfirmationDelete)
+        const modalsConfirmation = cy.get(deletes.modalsConfirmationDelete)
 
         cy.readFile(filename).then((object) => {
             const titleData = object.namaLayanan

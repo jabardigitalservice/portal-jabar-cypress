@@ -36,6 +36,7 @@ before('Load Data', () => {
 
 beforeEach(() => {
     cy.login()
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
 describe('Update Scenario', () => {
@@ -55,22 +56,22 @@ describe('Update Scenario', () => {
             updatePage.assertUpdatePublicationPage()
             updatePage.assertServiceValueForm1()
             updatePage.removeImgLogo()
-            updatePage.uploadLogoService(dataFile.filePngUpdate)
+            updatePage.uploadLogoService(dataFile.filePng)
             updatePage.chooseServiceCategoryJabarprov()
             updatePage.benefitTitileSection(faker.random.word(2))
-            updatePage.benefitFileUpload(dataFile.filePngUpdate)
+            updatePage.benefitFileUpload(dataFile.filePng)
             updatePage.urlCustomPortalJabar(faker.random.word(2))
             updatePage.clickBtnSaveNext()
 
             // Form 2
             updatePage.assertServiceValueForm2()
-            updatePage.coverImageFile(dataFile.filePngUpdate)
-            updatePage.contentImageMultiple(dataFile.filePngUpdate)
+            updatePage.coverImageFile(dataFile.filePng)
+            updatePage.contentImageMultiple(dataFile.filePng)
             updatePage.termConditionTitleSection(faker.random.word(2))
-            updatePage.uploadTermConditionImage(dataFile.filePngUpdate)
+            updatePage.uploadTermConditionImage(dataFile.filePng)
             updatePage.serviceUsageTitleSection(faker.random.word(2))
-            updatePage.uploadServiceUsageCover(dataFile.filePngUpdate)
-            updatePage.uploadInfographicServiceImage(dataFile.filePngUpdate)
+            updatePage.uploadServiceUsageCover(dataFile.filePng)
+            updatePage.uploadInfographicServiceImage(dataFile.filePng)
             updatePage.featureAppsTitleSection(faker.random.word(3))
             updatePage.clickBtnSaveNext()
 
@@ -108,7 +109,7 @@ describe('Update Scenario', () => {
             detailPage.clickServiceDescriptionTab()
             detailPage.assertionServiceDescriptionData()
             detailPage.clickAdditionalInformationTab()
-            detailPage.assertionAdditionalInformation()
+            detailPage.assertionAdditionalInformationUpdate()
             detailPage.clickBtnBack()
         })
     )
