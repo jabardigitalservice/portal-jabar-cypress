@@ -1,4 +1,5 @@
 import detail from "../../../selectors/service/service_list/detail"
+import detail_publication from "../../../selectors/service/service_publication/detail"
 const filename = "cypress/fixtures/service/data_tes.json"
 const publicationData = "cypress/fixtures/service/publication_data.json"
 const dataWizard1 = "cypress/fixtures/service/wizard1_temp_data.json"
@@ -103,7 +104,7 @@ export class DetailPublicationPage {
         const newsKeyword = "cypress/fixtures/agenda/agenda_data.json"
 
         cy.readFile(newsKeyword).then((object) => {
-            const newsInformationTable = cy.xpath('/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[2]/div[1]/div[1]')
+            const newsInformationTable = cy.xpath(detail_publication.tableNewsInformation)
             const dataKeywords = [
                 {
                     keywords: object.tagAgenda1,
@@ -122,7 +123,7 @@ export class DetailPublicationPage {
         })
 
         cy.readFile(publicationData).then((objectPublication) => {
-            const faqTable = cy.xpath('/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[2]/div[1]/div[2]')
+            const faqTable = cy.xpath(detail_publication.tableFaq)
             faqTable.should('contain', objectPublication.question1)
                 .and('contain', objectPublication.answer1)
                 .and('contain', objectPublication.question2)
@@ -136,7 +137,7 @@ export class DetailPublicationPage {
         const newsKeyword = "cypress/fixtures/agenda/agenda_data.json"
 
         cy.readFile(newsKeyword).then((object) => {
-            const newsInformationTable = cy.xpath('/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[2]/div[1]/div[1]')
+            const newsInformationTable = cy.xpath(detail_publication.tableNewsInformation)
             const dataKeywords = [
                 {
                     keywords: object.tagAgendaUpdate1,
@@ -155,7 +156,7 @@ export class DetailPublicationPage {
         })
 
         cy.readFile(publicationData).then((objectPublication) => {
-            const faqTable = cy.xpath('/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/section[2]/div[1]/div[2]')
+            const faqTable = cy.xpath(detail_publication.tableFaq)
             faqTable.should('contain', objectPublication.question1)
                 .and('contain', objectPublication.answer1)
                 .and('contain', objectPublication.question2)
