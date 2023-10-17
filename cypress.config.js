@@ -13,7 +13,7 @@ module.exports = defineConfig({
     viewportHeight: 900,
 
     // Connecting with cypress dashboard
-    projectId: "gzadzk",
+    projectId: process.env.CYPRESS_CLOUD_PROJECT_ID,
 
     env: {
       base_url: process.env.BASE_URL,
@@ -28,10 +28,10 @@ module.exports = defineConfig({
     // Integration With Qase.io
     "reporter": "cypress-qase-reporter",
     "reporterOptions": {
-      "apiToken": "faa1d80f16627da3fa736f3b76614d156edce6f8",
+      "apiToken": process.env.QASE_IO_API_TOKEN,
       "projectCode": "IPJ",
       "logging": true,
-      "runComplete": false,
+      "runComplete": true,
       "basePath": "https://api.qase.io/v1",
       "video": false,
       "environmentId": 2
