@@ -28,7 +28,7 @@ module.exports = defineConfig({
     // Integration With Qase.io
     "reporter": "cypress-qase-reporter",
     "reporterOptions": {
-      "apiToken": process.env.QASE_IO_API_TOKEN,
+      "apiToken": process.env.QASE_IO_API_KEY,
       "projectCode": "IPJ",
       "logging": true,
       "runComplete": true,

@@ -32,13 +32,14 @@ before('Load Data', () => {
 
 beforeEach('', () => {
     cy.login()
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
     listPage.navigateToNewsArchiveMenu()
     listPage.navigateToNewsTab()
 })
 
-describe('Scenario Publish News Positive', { testIsolation: false }, () => {
+describe('Scenario Publish News Positive', { testIsolation: true }, () => {
     qase([334, 1521, 339, 340, 342, 329],
-        it('Publish News', () => {
+        it('Create News Data', () => {
             // Navigate to form add
             listPage.clickBtnCreateNews()
             createPage.assertCreatePage()
@@ -64,6 +65,12 @@ describe('Scenario Publish News Positive', { testIsolation: false }, () => {
             // Assert data in list data news
             listPage.navigateToNewsTab()
             listPage.assertNewData()
+        })
+    )
+
+    qase([],
+        it('Preview Data', () => {
+            listPage.clickBtnAksi()
         })
     )
 })
