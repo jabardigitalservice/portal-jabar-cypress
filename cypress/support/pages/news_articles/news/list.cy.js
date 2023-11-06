@@ -65,7 +65,6 @@ export class ListNewsPage {
     // Btn Aksi
     clickBtnAksi() {
         const btnAksi = cy.xpath(list.btn_Action)
-        // btnAksi.should("be.visible")
         btnAksi.should("contain", "Aksi")
         btnAksi.click({ force: true })
         cy.wait(2000)
