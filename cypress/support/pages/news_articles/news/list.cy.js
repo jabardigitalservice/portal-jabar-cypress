@@ -61,4 +61,33 @@ export class ListNewsPage {
                 .and('contain', object.status)
         })
     }
+
+    // Btn Aksi
+    clickBtnAksi() {
+        const btnAksi = cy.xpath(list.btn_Action)
+        btnAksi.should("contain", "Aksi")
+        btnAksi.click({ force: true })
+        cy.wait(2000)
+    }
+
+    clickBtnDetail() {
+        const btnDetail = cy.xpath(list.btn_Detail)
+        btnDetail.should("contain", "Detail")
+        btnDetail.click({ force: true })
+        cy.wait(2000)
+    }
+
+    clickBtnUbah() {
+        const btnUbah = cy.xpath(list.btn_Update).as('clickBtnUbah')
+        btnUbah.should("contain", "Ubah")
+        btnUbah.click({ force: true })
+        cy.wait(2000)
+    }
+
+    clickBtnDelete() {
+        const btnDelete = cy.get(list.btn_Delete)
+        btnDelete.should("contain", "Hapus")
+        btnDelete.click({ force: true })
+    }
+    // End Btn Aksi
 }
