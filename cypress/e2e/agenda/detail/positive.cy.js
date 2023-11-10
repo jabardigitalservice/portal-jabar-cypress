@@ -274,7 +274,7 @@ describe('Detail Agenda Scenario', () => {
     )
 
     qase(282,
-        it('S27A2 - View Detail Agenda - Kembali Ke Halaman Detail Agenda', () => {
+        it.only('S27A2 - View Detail Agenda - Kembali Ke Halaman Detail Agenda', () => {
             createAgendaPage.enterTitleAgenda(dataAgenda.titleAgenda)
             createAgendaPage.chooseTypeAgendaOffline(dataAgenda.valueOffline)
             createAgendaPage.enterPlaceAgenda(dataAgenda.placeAgenda)
@@ -295,6 +295,7 @@ describe('Detail Agenda Scenario', () => {
             agendaPage.clickBtnAksiLihatDetail()
             detailPage.assertDetailContent()
             detailPage.clickBtnUpdate()
+            cy.wait(5000)
             updatePage.clickBtnBack()
             updatePage.clickBtnYesSave()
             updatePage.modalsConfirmationSuccesUpdate()
