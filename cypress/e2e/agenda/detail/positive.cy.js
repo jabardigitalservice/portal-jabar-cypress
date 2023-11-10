@@ -274,7 +274,7 @@ describe('Detail Agenda Scenario', () => {
     )
 
     qase(282,
-        it.only('S27A2 - View Detail Agenda - Kembali Ke Halaman Detail Agenda', () => {
+        it('S27A2 - View Detail Agenda - Kembali Ke Halaman Detail Agenda', () => {
             createAgendaPage.enterTitleAgenda(dataAgenda.titleAgenda)
             createAgendaPage.chooseTypeAgendaOffline(dataAgenda.valueOffline)
             createAgendaPage.enterPlaceAgenda(dataAgenda.placeAgenda)
