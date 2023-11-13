@@ -65,6 +65,7 @@ beforeEach(() => {
     // Navigate to update page
     agendaPage.clickBtnAksi()
     agendaPage.clickBtnUpdate()
+    cy.wait(5000)
 })
 
 describe('Update Agenda Scenario', () => {

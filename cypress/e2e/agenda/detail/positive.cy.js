@@ -295,6 +295,7 @@ describe('Detail Agenda Scenario', () => {
             agendaPage.clickBtnAksiLihatDetail()
             detailPage.assertDetailContent()
             detailPage.clickBtnUpdate()
+            cy.wait(5000)
             updatePage.clickBtnBack()
             updatePage.clickBtnYesSave()
             updatePage.modalsConfirmationSuccesUpdate()

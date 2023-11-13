@@ -119,7 +119,7 @@ describe('Service Positive Scenario', { testIsolation: false }, () => {
 
         qase([4204],
             it('Invalid 3 character search', () => {
-                listServicePage.search('aia')
+                listServicePage.search('aiaa')
                 listServicePage.assertSearchNotFound()
                 listServicePage.clearSearch()
                 listServicePage.assertRowDefault()
