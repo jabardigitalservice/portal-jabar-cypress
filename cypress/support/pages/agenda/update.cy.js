@@ -88,7 +88,7 @@ export class UpdateAgendaPage {
         const titleAgenda = cy.get(create_agenda.titleAgenda).find('input')
         const uuid = () => Cypress._.random(0, 1e4)
         const id = uuid()
-        const titleText = title + ` ${id}`
+        const titleText = `${title} ${id}`
 
         titleAgenda.clear()
         cy.writeFile(filename, { titleAgendaUpdate: titleText })
